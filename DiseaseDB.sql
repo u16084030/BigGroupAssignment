@@ -75,6 +75,8 @@ SpecialistID int IDENTITY(1,1) PRIMARY KEY,
 DiseaseID int FOREIGN KEY REFERENCES Disease(DiseaseID),
 FirstName varchar(20),
 LastName varchar(40),
+UserName varchar(8),
+UserPassword varchar(10),
 ContactNumber varchar(20),
 Email varchar(50),
 Qualification varchar(40), /*eg. MD, University of Manchester, specialising in Immunology*/
