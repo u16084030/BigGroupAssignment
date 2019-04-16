@@ -1,4 +1,7 @@
 CREATE DATABASE DiseaseDB
+GO
+
+USE DiseaseDB
 
 CREATE TABLE Disease(
 DiseaseID int IDENTITY(1,1) PRIMARY KEY,
@@ -44,6 +47,7 @@ DefiningCharacteristic varchar(10), )	/* is this symptom a defining characterist
 
 CREATE TABLE Treatment(
 TreatmentID int IDENTITY(1,1) PRIMARY KEY,
+DiseaseID int FOREIGN KEY REFERENCES Disease(DiseaseID),
 TreatmentName varchar(40),
 TreatmentDescription varchar(80),
 AvailableAt varchar(40),	/* where can this treatment be accessed*/
@@ -52,10 +56,10 @@ AfterCare varchar(60),	/*what needs to be done after symptom disappears*/
 TreatmentEffective varchar(20), /*same as Preventeffective*/
 Aftermath varchar(60), )	/* are there any permanent side effects eg. scarring? Should I expect flareups or am I cured for good?*/ 
 
-CREATE TABLE Symptom_Treatment(
+/*CREATE TABLE Symptom_Treatment(
 SymptomTreatmentID int IDENTITY(1,1) PRIMARY KEY,
 SymptomID int FOREIGN KEY REFERENCES Symptom(SymptomID),
-TreatmentID int FOREIGN KEY REFERENCES Treatment(TreatmentID), )
+TreatmentID int FOREIGN KEY REFERENCES Treatment(TreatmentID), )*/
 
 CREATE TABLE ActiveArea(	/*eg. East Africa, South America, Middle East*/
 AreaID int IDENTITY(1,1) PRIMARY KEY,
@@ -75,7 +79,6 @@ SpecialistID int IDENTITY(1,1) PRIMARY KEY,
 DiseaseID int FOREIGN KEY REFERENCES Disease(DiseaseID),
 FirstName varchar(20),
 LastName varchar(40),
-UserName varchar(8),
 UserPassword varchar(100),
 UserGUID varchar(100),
 GUIDExpiry datetime,
