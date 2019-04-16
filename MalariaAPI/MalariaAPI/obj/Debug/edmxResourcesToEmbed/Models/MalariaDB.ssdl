@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DiseaseDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ActiveArea">
+    <Key>
+      <PropertyRef Name="AreaID" />
+    </Key>
+    <Property Name="AreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiseaseID" Type="int" />
+    <Property Name="AreaName" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="Cause">
+    <Key>
+      <PropertyRef Name="CauseID" />
+    </Key>
+    <Property Name="CauseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiseaseID" Type="int" />
+    <Property Name="CauseDescription" Type="varchar" MaxLength="80" />
+    <Property Name="CauseRanking" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Disease">
+    <Key>
+      <PropertyRef Name="DiseaseID" />
+    </Key>
+    <Property Name="DiseaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommonName" Type="varchar" MaxLength="40" />
+    <Property Name="ScientificName" Type="varchar" MaxLength="60" />
+    <Property Name="Pathogen" Type="varchar" MaxLength="30" />
+    <Property Name="IncubationPeriod" Type="varchar" MaxLength="20" />
+    <Property Name="DiseaseDescription" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Outbreak">
+    <Key>
+      <PropertyRef Name="OutbreakID" />
+    </Key>
+    <Property Name="OutbreakID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaID" Type="int" />
+    <Property Name="OutbreakDate" Type="date" />
+    <Property Name="OutbreakCity" Type="varchar" MaxLength="40" />
+    <Property Name="NumberOfCasualties" Type="int" />
+    <Property Name="OutbreakDescription" Type="varchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="Prevention">
+    <Key>
+      <PropertyRef Name="PreventID" />
+    </Key>
+    <Property Name="PreventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CauseID" Type="int" />
+    <Property Name="PreventDescription" Type="varchar" MaxLength="60" />
+    <Property Name="PreventEffective" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Specialist">
+    <Key>
+      <PropertyRef Name="SpecialistID" />
+    </Key>
+    <Property Name="SpecialistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiseaseID" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="20" />
+    <Property Name="LastName" Type="varchar" MaxLength="40" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="100" />
+    <Property Name="UserGUID" Type="varchar" MaxLength="100" />
+    <Property Name="GUIDExpiry" Type="datetime" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Qualification" Type="varchar" MaxLength="40" />
+    <Property Name="Hospital" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="Subtype">
+    <Key>
+      <PropertyRef Name="SubtypeID" />
+    </Key>
+    <Property Name="SubtypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiseaseID" Type="int" />
+    <Property Name="SubtypeName" Type="varchar" MaxLength="40" />
+    <Property Name="Strain" Type="varchar" MaxLength="60" />
+    <Property Name="SubtypeDescription" Type="varchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="SuppliesList">
+    <Key>
+      <PropertyRef Name="SupplyID" />
+    </Key>
+    <Property Name="SupplyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PreventID" Type="int" />
+    <Property Name="SupplyName" Type="varchar" MaxLength="40" />
+    <Property Name="AvailableAt" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="Symptom">
+    <Key>
+      <PropertyRef Name="SymptomID" />
+    </Key>
+    <Property Name="SymptomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiseaseID" Type="int" />
+    <Property Name="SymptomName" Type="varchar" MaxLength="40" />
+    <Property Name="SymptomDescription" Type="varchar" MaxLength="60" />
+    <Property Name="SymptomSeverity" Type="varchar" MaxLength="20" />
+    <Property Name="SymptomAppears" Type="varchar" MaxLength="40" />
+    <Property Name="DefiningCharacteristic" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Treatment">
+    <Key>
+      <PropertyRef Name="TreatmentID" />
+    </Key>
+    <Property Name="TreatmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiseaseID" Type="int" />
+    <Property Name="TreatmentName" Type="varchar" MaxLength="40" />
+    <Property Name="TreatmentDescription" Type="varchar" MaxLength="80" />
+    <Property Name="AvailableAt" Type="varchar" MaxLength="40" />
+    <Property Name="TreatmentDuration" Type="varchar" MaxLength="60" />
+    <Property Name="AfterCare" Type="varchar" MaxLength="60" />
+    <Property Name="TreatmentEffective" Type="varchar" MaxLength="20" />
+    <Property Name="Aftermath" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <Association Name="FK__ActiveAre__Disea__4AB81AF0">
+    <End Role="Disease" Type="Self.Disease" Multiplicity="0..1" />
+    <End Role="ActiveArea" Type="Self.ActiveArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disease">
+        <PropertyRef Name="DiseaseID" />
+      </Principal>
+      <Dependent Role="ActiveArea">
+        <PropertyRef Name="DiseaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cause__DiseaseID__3C69FB99">
+    <End Role="Disease" Type="Self.Disease" Multiplicity="0..1" />
+    <End Role="Cause" Type="Self.Cause" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disease">
+        <PropertyRef Name="DiseaseID" />
+      </Principal>
+      <Dependent Role="Cause">
+        <PropertyRef Name="DiseaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Outbreak__AreaID__4D94879B">
+    <End Role="ActiveArea" Type="Self.ActiveArea" Multiplicity="0..1" />
+    <End Role="Outbreak" Type="Self.Outbreak" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActiveArea">
+        <PropertyRef Name="AreaID" />
+      </Principal>
+      <Dependent Role="Outbreak">
+        <PropertyRef Name="AreaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Preventio__Cause__3F466844">
+    <End Role="Cause" Type="Self.Cause" Multiplicity="0..1" />
+    <End Role="Prevention" Type="Self.Prevention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cause">
+        <PropertyRef Name="CauseID" />
+      </Principal>
+      <Dependent Role="Prevention">
+        <PropertyRef Name="CauseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Specialis__Disea__5070F446">
+    <End Role="Disease" Type="Self.Disease" Multiplicity="0..1" />
+    <End Role="Specialist" Type="Self.Specialist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disease">
+        <PropertyRef Name="DiseaseID" />
+      </Principal>
+      <Dependent Role="Specialist">
+        <PropertyRef Name="DiseaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Subtype__Disease__398D8EEE">
+    <End Role="Disease" Type="Self.Disease" Multiplicity="0..1" />
+    <End Role="Subtype" Type="Self.Subtype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disease">
+        <PropertyRef Name="DiseaseID" />
+      </Principal>
+      <Dependent Role="Subtype">
+        <PropertyRef Name="DiseaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SuppliesL__Preve__4222D4EF">
+    <End Role="Prevention" Type="Self.Prevention" Multiplicity="0..1" />
+    <End Role="SuppliesList" Type="Self.SuppliesList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prevention">
+        <PropertyRef Name="PreventID" />
+      </Principal>
+      <Dependent Role="SuppliesList">
+        <PropertyRef Name="PreventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Symptom__Disease__44FF419A">
+    <End Role="Disease" Type="Self.Disease" Multiplicity="0..1" />
+    <End Role="Symptom" Type="Self.Symptom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disease">
+        <PropertyRef Name="DiseaseID" />
+      </Principal>
+      <Dependent Role="Symptom">
+        <PropertyRef Name="DiseaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Treatment__Disea__47DBAE45">
+    <End Role="Disease" Type="Self.Disease" Multiplicity="0..1" />
+    <End Role="Treatment" Type="Self.Treatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disease">
+        <PropertyRef Name="DiseaseID" />
+      </Principal>
+      <Dependent Role="Treatment">
+        <PropertyRef Name="DiseaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DiseaseDBModelStoreContainer">
+    <EntitySet Name="ActiveArea" EntityType="Self.ActiveArea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cause" EntityType="Self.Cause" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Disease" EntityType="Self.Disease" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Outbreak" EntityType="Self.Outbreak" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prevention" EntityType="Self.Prevention" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Specialist" EntityType="Self.Specialist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subtype" EntityType="Self.Subtype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SuppliesList" EntityType="Self.SuppliesList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Symptom" EntityType="Self.Symptom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ActiveAre__Disea__4AB81AF0" Association="Self.FK__ActiveAre__Disea__4AB81AF0">
+      <End Role="Disease" EntitySet="Disease" />
+      <End Role="ActiveArea" EntitySet="ActiveArea" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cause__DiseaseID__3C69FB99" Association="Self.FK__Cause__DiseaseID__3C69FB99">
+      <End Role="Disease" EntitySet="Disease" />
+      <End Role="Cause" EntitySet="Cause" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Outbreak__AreaID__4D94879B" Association="Self.FK__Outbreak__AreaID__4D94879B">
+      <End Role="ActiveArea" EntitySet="ActiveArea" />
+      <End Role="Outbreak" EntitySet="Outbreak" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Preventio__Cause__3F466844" Association="Self.FK__Preventio__Cause__3F466844">
+      <End Role="Cause" EntitySet="Cause" />
+      <End Role="Prevention" EntitySet="Prevention" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Specialis__Disea__5070F446" Association="Self.FK__Specialis__Disea__5070F446">
+      <End Role="Disease" EntitySet="Disease" />
+      <End Role="Specialist" EntitySet="Specialist" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Subtype__Disease__398D8EEE" Association="Self.FK__Subtype__Disease__398D8EEE">
+      <End Role="Disease" EntitySet="Disease" />
+      <End Role="Subtype" EntitySet="Subtype" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SuppliesL__Preve__4222D4EF" Association="Self.FK__SuppliesL__Preve__4222D4EF">
+      <End Role="Prevention" EntitySet="Prevention" />
+      <End Role="SuppliesList" EntitySet="SuppliesList" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Symptom__Disease__44FF419A" Association="Self.FK__Symptom__Disease__44FF419A">
+      <End Role="Disease" EntitySet="Disease" />
+      <End Role="Symptom" EntitySet="Symptom" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Treatment__Disea__47DBAE45" Association="Self.FK__Treatment__Disea__47DBAE45">
+      <End Role="Disease" EntitySet="Disease" />
+      <End Role="Treatment" EntitySet="Treatment" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

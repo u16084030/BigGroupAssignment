@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ac85f56f2a1547d6b35d174c509287f3" Name="Diagram1">
+        <EntityTypeShape EntityType="DiseaseDBModel.ActiveArea" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiseaseDBModel.Cause" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiseaseDBModel.Disease" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiseaseDBModel.Outbreak" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiseaseDBModel.Prevention" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiseaseDBModel.Specialist" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiseaseDBModel.Subtype" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiseaseDBModel.SuppliesList" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiseaseDBModel.Symptom" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiseaseDBModel.Treatment" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <AssociationConnector Association="DiseaseDBModel.FK__ActiveAre__Disea__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="DiseaseDBModel.FK__Outbreak__AreaID__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="DiseaseDBModel.FK__Cause__DiseaseID__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DiseaseDBModel.FK__Preventio__Cause__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="DiseaseDBModel.FK__Specialis__Disea__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="DiseaseDBModel.FK__Subtype__Disease__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DiseaseDBModel.FK__Symptom__Disease__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="DiseaseDBModel.FK__Treatment__Disea__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="DiseaseDBModel.FK__SuppliesL__Preve__4222D4EF" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
