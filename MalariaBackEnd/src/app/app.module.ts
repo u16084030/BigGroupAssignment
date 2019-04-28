@@ -14,6 +14,7 @@ import { SubtypeComponent } from './subtype/subtype.component';
 import { SuppliesListComponent } from './supplies-list/supplies-list.component';
 import { SymptonComponent } from './sympton/sympton.component';
 import { TreatmentComponent } from './treatment/treatment.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TreatmentComponent } from './treatment/treatment.component';
     SubtypeComponent,
     SuppliesListComponent,
     SymptonComponent,
-    TreatmentComponent
+    TreatmentComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
