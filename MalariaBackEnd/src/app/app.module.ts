@@ -16,6 +16,14 @@ import { SymptonComponent } from './sympton/sympton.component';
 import { TreatmentComponent } from './treatment/treatment.component';
 import { NavComponent } from './nav/nav.component';
 
+import { CauseService } from './cause/cause.service';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
+import { HttpClientModule, HttpClient } from '@angular/common/http';  
+import { MatButtonModule, MatMenuModule, MatDatepickerModule,MatNativeDateModule , MatIconModule, MatCardModule, MatSidenavModule,MatFormFieldModule, MatInputModule, MatTooltipModule, MatToolbarModule } from '@angular/material';  
+import { MatRadioModule } from '@angular/material/radio';  
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,9 +41,25 @@ import { NavComponent } from './nav/nav.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,  
+    ReactiveFormsModule,  
+    HttpClientModule,  
+    BrowserAnimationsModule,  
+    MatButtonModule,  
+    MatMenuModule,  
+    MatDatepickerModule,  
+    MatNativeDateModule,  
+    MatIconModule,  
+    MatRadioModule,  
+    MatCardModule,  
+    MatSidenavModule,  
+    MatFormFieldModule,  
+    MatInputModule,  
+    MatTooltipModule,  
+    MatToolbarModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [HttpClientModule, CauseService,MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
