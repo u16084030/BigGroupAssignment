@@ -9,5 +9,10 @@ import { Cause } from './cause';
 })
 export class CauseService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getAllCauses()
+  {
+    return this.http.get('http://localhost:60090/api/Cause/getAllCauses');
+  }
 }
