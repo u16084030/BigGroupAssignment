@@ -8,79 +8,48 @@
     </mat-toolbar>  
   <br><br>  
     <mat-card-content>  
-      <!--<form [formGroup]="employeeForm"(ngSubmit)="onFormSubmit(employeeForm.value)">  
+      <form [formGroup]="causeForm"(ngSubmit)="onFormSubmit(causeForm.value)">  
               <table>  
                 <tr>  
                   <td class="tbl1">  
                     <mat-form-field class="demo-full-width">  
-                      <input formControlName="EmpName" matTooltip="Enter Employee Name" matInput placeholder="Employee Name">  
+                      <input formControlName="DiseaseID" matTooltip="1 is used for Malaria" matInput placeholder="Disease ID">  
                     </mat-form-field>  
                     <mat-error>  
-                      <span *ngIf="!employeeForm.get('EmpName').value && employeeForm.get('EmpName').touched"></span>  
+                      <span *ngIf="!causeForm.get('DiseaseID').value && causeForm.get('DiseaseID').touched"></span>  
                     </mat-error>  
                   </td>  
                   <td class="tbl1">  
                     <mat-form-field class="demo-full-width">  
-                      <input matInput [matDatepicker]="picker"matTooltip="Enter Date Of Birth" formControlName="DateOfBirth"placeholder="Choose Date Of Birth">  
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
-                      <mat-datepicker #picker></mat-datepicker>  
+                      <input formControlName="CauseDescription" matTooltip="Add a description of the cause" matInput placeholder="Cause Description">  
                     </mat-form-field>  
                     <mat-error>  
-                      <span *ngIf="!employeeForm.get('DateOfBirth').value && employeeForm.get('DateOfBirth').touched"></span>  
+                      <span *ngIf="!causeForm.get('CauseDescription').value && causeForm.get('CauseDescription').touched"></span>  
                     </mat-error>  
                   </td>  
                   <td class="tbl1">  
                     <mat-form-field class="demo-full-width">  
-                      <input formControlName="EmailId" matTooltip="Enter EmailId" matInput placeholder="EmailId">  
+                      <input formControlName="CauseRanking" matTooltip="Add a ranking for the cause" matInput placeholder="Cause Rating">  
                     </mat-form-field>  
                     <mat-error>  
-                      <span *ngIf="!employeeForm.get('EmailId').value && employeeForm.get('EmailId').touched"></span>  
+                      <span *ngIf="!causeForm.get('CauseRanking').value && causeForm.get('CauseRanking').touched"></span>  
                     </mat-error>  
                   </td>  
-                </tr>  
-                <tr>  
-                  <td class="tbl1">  
-                    <span>Gender</span>  
-                    <br><br>  
-                    <mat-radio-group matTooltip="Enter Gender"formControlName="Gender">  
-                        <mat-radio-button value="0">Male</mat-radio-button>    
-                        <mat-radio-button value="1">Female</mat-radio-button>  
-                      </mat-radio-group>  
-                    <mat-error>  
-                      <span *ngIf="!employeeForm.get('Gender').value && employeeForm.get('Gender').touched"></span>  
-                    </mat-error>  
-                  </td>  
-                  <td class="tbl1">  
-                    <mat-form-field class="demo-full-width">  
-                      <input matTooltip="Enter Address"formControlName="Address" matInput placeholder="Address">  
-                    </mat-form-field>  
-                    <mat-error>  
-                      <span *ngIf="!employeeForm.get('Address').value && employeeForm.get('Address').touched"></span>  
-                    </mat-error>  
-                  </td>  
-                  <td class="tbl1">  
-                    <mat-form-field class="demo-full-width">  
-                      <input formControlName="PinCode" matTooltip="Enter Pine Code" matInput placeholder="PinCode">  
-                    </mat-form-field>  
-                    <mat-error>  
-                      <span *ngIf="!employeeForm.get('PinCode').value && employeeForm.get('PinCode').touched"></span>  
-                    </mat-error>  
-                  </td>  
-                </tr>  
+                </tr>    
                 <tr>  
                   <td></td>  
                   <td  class="content-center">  
-                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!employeeForm.valid">Submit</button>      
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!causeForm.valid">Submit</button>      
                     <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
                   </td>  
                   <td>  
                     <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
-                      {{massage}}  
+                      {{message}}  
                     </p>  
                   </td>  
                 </tr>  
               </table>  
-  <br><br>  -->
+  <br><br> 
         <table class="table" >  
             <tr ngclass="btn-primary">  
               <th class="tbl2">Cause ID</th>  
@@ -92,11 +61,17 @@
               <td class="tbl2">{{cause.CauseID}}</td>  
               <td class="tbl2">{{cause.DiseaseID}}</td>  
               <td class="tbl2">{{cause.CauseDescription}}</td>  
-              <td class="tbl2">{{cause.CauseRanking}}</td>  
+              <td class="tbl2">{{cause.CauseRanking}}</td>
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadCauseToEdit(cause.CauseID)">Edit</button>  
+              </td>  
+              <td class="tbl2">  
+                <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteCause(cause.CauseID)">Delete</button>  
+              </td>  
             </tr>  
     
           </table>  
-      <!--</form>-->  
+      </form>  
     </mat-card-content>  
   </mat-card>  
   </div>

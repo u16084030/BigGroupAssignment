@@ -15,4 +15,24 @@ export class CauseService {
   {
     return this.http.get('http://localhost:60090/api/Cause/getAllCauses');
   }
+
+  getCauseById(cause:number)
+  {
+    return this.http.get('http://localhost:60090/api/Cause/getCauseById/'+cause);
+  }
+
+  addCause(cause:Object)
+  {
+    return this.http.get('http://localhost:60090/api/Cause/addCause');
+  }
+
+  updateCause(cause:Object)
+  {
+    return this.http.get('http://localhost:60090/api/Cause/updateCause');
+  }
+
+  deleteCauseById(cause:number)
+  {
+    return this.http.get('http://localhost:60090/api/Cause/deleteCauseById/'+cause);
+  }
 }
