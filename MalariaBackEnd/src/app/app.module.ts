@@ -17,6 +17,7 @@ import { TreatmentComponent } from './treatment/treatment.component';
 import { NavComponent } from './nav/nav.component';
 
 import { CauseService } from './cause/cause.service';
+import { DiseaseService } from './disease/disease.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
 import { HttpClientModule, HttpClient } from '@angular/common/http';  
@@ -59,7 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatToolbarModule,
     AppRoutingModule
   ],
-  providers: [HttpClientModule, CauseService,MatDatepickerModule],
+  providers: [HttpClientModule, CauseService, DiseaseService,MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
