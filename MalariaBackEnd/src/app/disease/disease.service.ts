@@ -9,5 +9,5 @@ import { Disease } from './disease';
 })
 export class DiseaseService {
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
 }
