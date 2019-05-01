@@ -9,5 +9,30 @@ import { Disease } from './disease';
 })
 export class DiseaseService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
+
+  getAllDiseases()
+  {
+    return this.http.get('http://localhost:60090/api/Disease/getAllDiseases');
+  }
+
+  getDiseaseById(disease:number)
+  {
+    return this.http.get('http://localhost:60090/api/Disease/getDiseaseById/'+disease);
+  }
+
+  addDisease(disease:Object)
+  {
+    return this.http.get('http://localhost:60090/api/Disease/addDisease');
+  }
+
+  updateDisease(disease:Object)
+  {
+    return this.http.get('http://localhost:60090/api/Disease/updateDisease');
+  }
+
+  deleteDiseaseById(disease:number)
+  {
+    return this.http.get('http://localhost:60090/api/Disease/deleteDiseaseById/'+disease);
+  }
 }
