@@ -184,7 +184,7 @@ namespace MalariaAPI.Controllers
             {
                 dynamic dynamicSuppliesList = new ExpandoObject();
                 dynamicSuppliesList.SupplyID = suppliesList.SupplyID;
-                dynamicSuppliesList.SuppliesListID = suppliesList.PreventID;
+                dynamicSuppliesList.PreventID = suppliesList.PreventID;
                 dynamicSuppliesList.SupplyName = suppliesList.SupplyName;
                 dynamicSuppliesList.AvailableAt = suppliesList.AvailableAt;
                 dynamicSuppliesLists.Add(dynamicSuppliesList);
@@ -698,6 +698,29 @@ namespace MalariaAPI.Controllers
             return Ok();
         }
 
+<<<<<<< HEAD
+=======
+        [System.Web.Http.Route("api/Outbreak/deleteOutbreak/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deleteOutbreak(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid outbreak id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.Outbreaks
+                    .Where(s => s.OutbreakID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+
         [System.Web.Http.Route("api/Cause/deleteCause/{id}")]
         [System.Web.Mvc.HttpPost]
         public IHttpActionResult deleteCause(int id)
@@ -709,6 +732,147 @@ namespace MalariaAPI.Controllers
             {
                 var area = ctx.Causes
                     .Where(s => s.CauseID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+
+        [System.Web.Http.Route("api/Prevention/deletePrevention/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deletePrevention(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid prevention id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.Preventions
+                    .Where(s => s.PreventID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/SuppliesList/deleteSuppliesList/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deleteSuppliesList(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid supply id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.SuppliesLists
+                    .Where(s => s.SupplyID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Disease/deleteDisease/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deleteDisease(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid disease id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.Diseases
+                    .Where(s => s.DiseaseID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Specialist/deleteSpecialist/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deleteSpecialist(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid specialist id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.Specialists
+                    .Where(s => s.SpecialistID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Subtype/deleteSubtype/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deleteSubtype(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid subtype id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.Subtypes
+                    .Where(s => s.SubtypeID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Symptom/deleteSymptom/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deleteSymptom(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid symptom id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.Symptoms
+                    .Where(s => s.SymptomID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Treatment/deleteTreatment/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deleteTreatment(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid treatment id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.Treatments
+                    .Where(s => s.TreatmentID == id)
                     .FirstOrDefault();
 
                 ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
@@ -745,5 +909,296 @@ namespace MalariaAPI.Controllers
 
             return Ok();
         }
+
+
+        [System.Web.Http.Route("api/Outbreak/updateOutbreak")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updateOutbreak(Outbreak outbreak)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingOutbreak = ctx.Outbreaks.Where(s => s.OutbreakID == outbreak.OutbreakID)
+                                                        .FirstOrDefault<Outbreak>();
+
+                if (existingOutbreak != null)
+                {
+                    existingOutbreak.AreaID = outbreak.AreaID;
+                    existingOutbreak.OutbreakCity = outbreak.OutbreakCity;
+                    existingOutbreak.OutbreakDate = outbreak.OutbreakDate;
+                    existingOutbreak.OutbreakDescription = outbreak.OutbreakDescription;
+                    existingOutbreak.NumberOfCasualties = outbreak.NumberOfCasualties;
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Cause/updateCause")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updateCause(Cause Cause)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingCause = ctx.Causes.Where(s => s.CauseID == Cause.CauseID)
+                                                        .FirstOrDefault<Cause>();
+
+                if (existingCause != null)
+                {
+                    existingCause.DiseaseID = Cause.DiseaseID;
+                    existingCause.CauseDescription = Cause.CauseDescription;
+                    existingCause.CauseRanking = Cause.CauseRanking;
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Prevention/updatePrevention")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updatePrevention(Prevention Prevention)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingPrevention = ctx.Preventions.Where(s => s.PreventID == Prevention.PreventID)
+                                                        .FirstOrDefault<Prevention>();
+
+                if (existingPrevention != null)
+                {
+                    existingPrevention.CauseID = Prevention.CauseID;
+                    existingPrevention.PreventDescription = Prevention.PreventDescription;
+                    existingPrevention.PreventEffective = Prevention.PreventEffective;
+
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/SuppliesList/updateSuppliesList")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updateSuppliesList(SuppliesList SuppliesList)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingSuppliesList = ctx.SuppliesLists.Where(s => s.SupplyID == SuppliesList.SupplyID)
+                                                        .FirstOrDefault<SuppliesList>();
+
+                if (existingSuppliesList != null)
+                {
+                    existingSuppliesList.SupplyName = SuppliesList.SupplyName;
+                    existingSuppliesList.AvailableAt = SuppliesList.AvailableAt;
+                    existingSuppliesList.PreventID = SuppliesList.PreventID;
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Disease/updateDisease")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updateDisease(Disease Disease)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingDisease = ctx.Diseases.Where(s => s.DiseaseID == Disease.DiseaseID)
+                                                        .FirstOrDefault<Disease>();
+
+                if (existingDisease != null)
+                {
+                    existingDisease.CommonName = Disease.CommonName;
+                    existingDisease.ScientificName = Disease.ScientificName;
+                    existingDisease.Pathogen = Disease.Pathogen;
+                    existingDisease.DiseaseDescription = Disease.DiseaseDescription;
+                    existingDisease.IncubationPeriod = Disease.IncubationPeriod;
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Specialist/updateSpecialist")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updateSpecialist(Specialist Specialist)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingSpecialist = ctx.Specialists.Where(s => s.SpecialistID == Specialist.SpecialistID)
+                                                        .FirstOrDefault<Specialist>();
+
+                if (existingSpecialist != null)
+                {
+                    existingSpecialist.DiseaseID = Specialist.DiseaseID;
+                    existingSpecialist.FirstName = Specialist.FirstName;
+                    existingSpecialist.LastName = Specialist.LastName;
+                    existingSpecialist.UserGUID = Specialist.UserGUID;
+                    existingSpecialist.UserPassword = Specialist.UserPassword;
+                    existingSpecialist.ContactNumber = Specialist.ContactNumber;
+                    existingSpecialist.Email = Specialist.Email;
+                    existingSpecialist.GUIDExpiry = Specialist.GUIDExpiry;
+                    existingSpecialist.Hospital = Specialist.Hospital;
+                    existingSpecialist.Qualification = Specialist.Qualification;
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Subtype/updateSubtype")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updateSubtype(Subtype Subtype)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingSubtype = ctx.Subtypes.Where(s => s.SubtypeID == Subtype.SubtypeID)
+                                                        .FirstOrDefault<Subtype>();
+
+                if (existingSubtype != null)
+                {
+                    existingSubtype.SubtypeDescription = Subtype.SubtypeDescription;
+                    existingSubtype.SubtypeName = Subtype.SubtypeName;
+                    existingSubtype.Strain = Subtype.Strain;
+                    existingSubtype.DiseaseID = Subtype.DiseaseID;
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Symptom/updateSymptom")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updateSymptom(Symptom Symptom)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingSymptom = ctx.Symptoms.Where(s => s.SymptomID == Symptom.SymptomID)
+                                                        .FirstOrDefault<Symptom>();
+
+                if (existingSymptom != null)
+                {
+                    existingSymptom.DiseaseID = Symptom.DiseaseID;
+                    existingSymptom.DefiningCharacteristic = Symptom.DefiningCharacteristic;
+                    existingSymptom.SymptomAppears = Symptom.SymptomAppears;
+                    existingSymptom.SymptomDescription = Symptom.SymptomDescription;
+                    existingSymptom.SymptomName = Symptom.SymptomName;
+                    existingSymptom.SymptomSeverity = Symptom.SymptomSeverity;
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Treatment/updateTreatment")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updateTreatment(Treatment Treatment)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingTreatment = ctx.Treatments.Where(s => s.TreatmentID == Treatment.TreatmentID)
+                                                        .FirstOrDefault<Treatment>();
+
+                if (existingTreatment != null)
+                {
+                    existingTreatment.TreatmentDuration = Treatment.TreatmentDuration;
+                    existingTreatment.TreatmentEffective = Treatment.TreatmentEffective;
+                    existingTreatment.TreatmentName = Treatment.TreatmentName;
+                    existingTreatment.TreatmentDescription = Treatment.TreatmentDescription;
+                    existingTreatment.DiseaseID = Treatment.DiseaseID;
+                    existingTreatment.AfterCare = Treatment.AfterCare;
+                    existingTreatment.Aftermath = Treatment.Aftermath;
+                    existingTreatment.AvailableAt = Treatment.AvailableAt;
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+
+            return Ok();
+        }
+
     }
 }

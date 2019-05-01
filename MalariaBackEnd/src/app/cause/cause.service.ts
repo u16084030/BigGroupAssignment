@@ -23,7 +23,7 @@ export class CauseService {
 
   addCause(cause:Object)
   {
-    return this.http.post('http://localhost:60090/api/Cause/addCause',cause);
+    return this.http.post('http://localhost:60090/api/Cause/addCause', cause);
   }
 
   updateCause(cause:Object)

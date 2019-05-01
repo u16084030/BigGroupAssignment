@@ -1,5 +1,153 @@
-<br>
-<br>
-<br><p>
-  specialist works!
-</p>
+<div class="container">  
+  
+  <mat-card>  
+    <mat-toolbar color="accent">  
+      <div align="center" style="color:white;text-align: right;">  
+        Specialists in the Database  
+      </div>    
+    </mat-toolbar>  
+  <br><br>  
+    <mat-card-content>  
+      <form [formGroup]="specialistForm"(ngSubmit)="onFormSubmit(specialistForm.value)">  
+              <table>  
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="DiseaseID" matTooltip="Insert the disease ID" matInput placeholder="Disease ID">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!specialistForm.get('DiseaseID').value && specialistForm.get('DiseaseID').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="FirstName" matTooltip="Enter your first name" matInput placeholder="First Name">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!specialistForm.get('FirstName').value && specialistForm.get('FirstName').touched"></span>  
+                    </mat-error>  
+                  </td>
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="LastName" matTooltip="Enter your last name" matInput placeholder="Last Name">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!specialistForm.get('LastName').value && specialistForm.get('LastName').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                </tr> 
+                <tr>  
+                    <td class="tbl1">  
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="UserPassword" matTooltip="Change the password" matInput placeholder="User Password">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!specialistForm.get('UserPassword').value && specialistForm.get('UserPassword').touched"></span>  
+                      </mat-error>  
+                    </td>   
+                    <td class="tbl1">  
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="UserGUID" matTooltip="Update User GUID" matInput placeholder="User GUID">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!specialistForm.get('UserGUID').value && specialistForm.get('UserGUID').touched"></span>  
+                      </mat-error>  
+                    </td>
+                    <td class="tbl1">
+                      <mat-form-field class="demo-full-width">  
+                        <input matInput [matDatepicker]="picker"matTooltip="Enter Date For Expiration" formControlName="GUIDExpiry"placeholder="Choose Date For Expiration">  
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
+                        <mat-datepicker #picker></mat-datepicker>  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!specialistForm.get('GUIDExpiry').value && specialistForm.get('GUIDExpiry').touched"></span>  
+                      </mat-error>   
+                  </td>  
+                </tr> 
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="ContactNumber" matTooltip="Insert a contact number" matInput placeholder="Contact Number">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!specialistForm.get('ContactNumber').value && specialistForm.get('ContactNumber').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="Email" matTooltip="Enter your email" matInput placeholder="Email">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!specialistForm.get('Email').value && specialistForm.get('Email').touched"></span>  
+                    </mat-error>  
+                  </td>
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="Qualification" matTooltip="Enter your qualification" matInput placeholder="Qualification">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!specialistForm.get('Qualification').value && specialistForm.get('Qualification').touched"></span>  
+                    </mat-error>  
+                  </td>
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="Hospital" matTooltip="Enter your hospital" matInput placeholder="Hospital">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!specialistForm.get('Hospital').value && specialistForm.get('Hospital').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                </tr>  
+                <tr>  
+                  <td></td>  
+                  <td  class="content-center">  
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!specialistForm.valid">Submit</button>      
+                    <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                  </td>  
+                  <td>  
+                    <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                      {{message}}  
+                    </p>  
+                  </td>  
+                </tr>  
+              </table>  
+  <br><br> 
+        <table class="table" >  
+            <tr ngclass="btn-primary">  
+              <th class="tbl2">Specialist ID</th>  
+              <th class="tbl2">Disease ID</th>  
+              <th class="tbl2">First Name</th>  
+              <th class="tbl2">Last Name</th>
+              <th class="tbl2">User Password</th>  
+              <th class="tbl2">User GUID</th>
+              <th class="tbl2">GUID Expiry</th>  
+              <th class="tbl2">Contact Number</th>  
+              <th class="tbl2">Email</th>
+              <th class="tbl2">Qualification</th>  
+              <th class="tbl2">Hospital</th>   
+            </tr>  
+            <tr *ngFor="let specialist of allSpecialists | async">  
+              <td class="tbl2">{{specialist.SpecialistID}}</td>  
+              <td class="tbl2">{{specialist.DiseaseID}}</td>  
+              <td class="tbl2">{{specialist.FirstName}}</td>  
+              <td class="tbl2">{{specialist.LastName}}</td>
+              <td class="tbl2">{{specialist.UserPassword}}</td>  
+              <td class="tbl2">{{specialist.UserGUID}}</td>
+              <td class="tbl2">{{specialist.GUIDExpiry}}</td>  
+              <td class="tbl2">{{specialist.ContactNumber}}</td>  
+              <td class="tbl2">{{specialist.Email}}</td>
+              <td class="tbl2">{{specialist.Qualification}}</td>  
+              <td class="tbl2">{{specialist.Hospital}}</td>
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadSpecialistToEdit(specialist.SpecialistID)">Edit</button>  
+              </td>  
+              <td class="tbl2">  
+                <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteSpecialist(specialist.SpecialistID)">Delete</button>  
+              </td>  
+            </tr>  
+    
+          </table>  
+      </form>  
+    </mat-card-content>  
+  </mat-card>  
+  </div>
