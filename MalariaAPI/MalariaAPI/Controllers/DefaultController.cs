@@ -4,12 +4,15 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
+using System.Web.Http.Cors;//check back
 using System.Data.Entity;
 using MalariaAPI.Models;
 using System.Dynamic;
 
 namespace MalariaAPI.Controllers
 {
+    [EnableCors(origins: "http://localhost:60090/api", headers: "*", methods: "*")]
     public class DefaultController : ApiController
     {
         // GET: api/Default
@@ -73,6 +76,56 @@ namespace MalariaAPI.Controllers
             db.Configuration.ProxyCreationEnabled = false;
             return getCausesReturnList(db.Causes.ToList());
         }
+
+        [System.Web.Http.Route("api/Cause/getCauseById/{id}")]
+        [System.Web.Mvc.HttpGet]
+        public IHttpActionResult getCauseById(int id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+
+            
+
+            
+            /*DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            List<dynamic> dynamicCauses = new List<dynamic>();
+            foreach (Cause cause in db.Causes.ToList())
+            {
+                if (cause.CauseID == id)
+                {
+                    dynamic dynamicCause = new ExpandoObject();
+                    dynamicCause.CauseID = cause.CauseID;
+                    dynamicCause.DiseaseID = cause.DiseaseID;
+                    dynamicCause.CauseDescription = cause.CauseDescription;
+                    dynamicCause.CauseRanking = cause.CauseRanking;
+                    dynamicCauses.Add(dynamicCause);
+                }
+            }
+            return dynamicCauses;*/
+            dynamic dynamicCause = new ExpandoObject();
+            //CauseDetail objCause = new CauseDetail();
+            int ID = Convert.ToInt32(id);
+            try
+            {
+                dynamicCause = db.Causes.Find(ID);
+                if (dynamicCause == null)
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            var response = Request.CreateResponse(HttpStatusCode.OK, dynamicCause);
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+            return response;
+
+            //return Ok(dynamicCause);
+        }
+
 
         private List<dynamic> getCausesReturnList(List<Cause> forClient)
         {
@@ -623,6 +676,74 @@ namespace MalariaAPI.Controllers
         // DELETE: api/Default/5
         public void Delete(int id)
         {
+        }
+
+        [System.Web.Http.Route("api/ActiveArea/deleteActiveArea/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deleteActiveArea(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid area id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.ActiveAreas
+                    .Where(s => s.AreaID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/Cause/deleteCause/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult deleteCause(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid cause id");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var area = ctx.Causes
+                    .Where(s => s.CauseID == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(area).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+        [System.Web.Http.Route("api/ActiveArea/updateActiveArea")]
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult updateActiveArea(ActiveArea area)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new DiseaseDBEntities())
+            {
+                var existingArea = ctx.ActiveAreas.Where(s => s.AreaID == area.AreaID)
+                                                        .FirstOrDefault<ActiveArea>();
+
+                if (existingArea != null)
+                {
+                    existingArea.DiseaseID = area.DiseaseID;
+                    existingArea.AreaName = area.AreaName;
+
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            return Ok();
         }
     }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';  
 import { CauseService } from '../cause/cause.service';  
 import { Cause } from '../cause/cause'; 
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-cause',
@@ -19,7 +20,8 @@ export class CauseComponent implements OnInit {
 
   constructor(private formbulider: FormBuilder, private causeService:CauseService) { }
 
-  ngOnInit() {    
+  ngOnInit() {  
+         
       this.causeForm = this.formbulider.group({  
       DiseaseID: ['', [Validators.required]],  
       CauseDescription: ['', [Validators.required]],  
@@ -33,7 +35,7 @@ export class CauseComponent implements OnInit {
     
     onFormSubmit() {  
       this.dataSaved = false;  
-      const cause = this.causeForm.value;  
+      const cause = this.causeForm.value; 
       this.CreateCause(cause);  
       this.causeForm.reset();  
     }  
@@ -72,7 +74,7 @@ export class CauseComponent implements OnInit {
     }   
     deleteCause(causeId: number) {  
       if (confirm("Are you sure you want to delete this ?")) {   
-      this.causeService.deleteCauseById(causeId).subscribe(() => {  
+      this.causeService.deleteCause(causeId).subscribe(() => {  
         this.dataSaved = true;  
         this.message = 'Record Deleted Succefully';  
         this.loadAllCauses();  
@@ -87,4 +89,4 @@ export class CauseComponent implements OnInit {
       this.message = null;  
       this.dataSaved = false;  
     }
-
+  }

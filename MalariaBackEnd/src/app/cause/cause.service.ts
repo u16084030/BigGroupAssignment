@@ -23,7 +23,7 @@ export class CauseService {
 
   addCause(cause:Object)
   {
-    return this.http.get('http://localhost:60090/api/Cause/addCause');
+    return this.http.post('http://localhost:60090/api/Cause/addCause',cause);
   }
 
   updateCause(cause:Object)
@@ -31,8 +31,8 @@ export class CauseService {
     return this.http.get('http://localhost:60090/api/Cause/updateCause');
   }
 
-  deleteCauseById(cause:number)
+  deleteCause(cause:number)
   {
-    return this.http.get('http://localhost:60090/api/Cause/deleteCauseById/'+cause);
+    return this.http.post('http://localhost:60090/api/Cause/deleteCause', cause);
   }
 }
