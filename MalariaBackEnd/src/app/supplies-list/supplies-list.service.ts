@@ -9,5 +9,31 @@ import { SuppliesList } from './supplies-list';
 })
 export class SuppliesListService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getAllSuppliesLists()
+  {
+    return this.http.get('http://localhost:60090/api/SuppliesList/getAllSuppliesLists');
+  }
+
+  getSuppliesListById(supply:number)
+  {
+    return this.http.get('http://localhost:60090/api/SuppliesList/getSuppliesListById/'+supply);
+  }
+
+  addSuppliesList(supply:Object)
+  {
+    return this.http.post('http://localhost:60090/api/SuppliesList/addSuppliesList',supply);
+  }
+
+  updateSuppliesList(supply:Object)
+  {
+    return this.http.get('http://localhost:60090/api/SuppliesList/updateSuppliesList');
+  }
+
+  deleteSuppliesList(supply:number)
+  {
+    return this.http.post('http://localhost:60090/api/SuppliesList/deleteSuppliesList', supply);
+  }
 }
+

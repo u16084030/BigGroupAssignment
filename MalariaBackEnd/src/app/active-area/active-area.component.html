@@ -1,6 +1,67 @@
-<br>
-<br>
-<br>
-<p>
-  active-area works!
-</p>
+<div class="container">  
+  
+  <mat-card>  
+    <mat-toolbar color="accent">  
+      <div align="center" style="color:white;text-align: right;">  
+        Active Areas of Malaria  
+      </div>    
+    </mat-toolbar>  
+  <br><br>  
+    <mat-card-content>  
+      <form [formGroup]="activeAreaForm"(ngSubmit)="onFormSubmit(activeAreaForm.value)">  
+              <table>  
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="DiseaseID" matTooltip="1 is used for Malaria" matInput placeholder="Disease ID">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!activeAreaForm.get('DiseaseID').value && activeAreaForm.get('DiseaseID').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="AreaName" matTooltip="Add Area Name" matInput placeholder="Area Name">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!activeAreaForm.get('AreaName').value && activeAreaForm.get('AreaName').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                </tr>    
+                <tr>  
+                  <td></td>  
+                  <td  class="content-center">  
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!activeAreaForm.valid">Submit</button>      
+                    <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                  </td>  
+                  <td>  
+                    <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                      {{message}}  
+                    </p>  
+                  </td>  
+                </tr>  
+              </table>  
+  <br><br> 
+        <table class="table" >  
+            <tr ngclass="btn-primary">  
+              <th class="tbl2">Area ID</th>  
+              <th class="tbl2">Disease ID</th>  
+              <th class="tbl2">Area Name</th>     
+            </tr>  
+            <tr *ngFor="let area of allAreas | async">  
+              <td class="tbl2">{{area.AreaID}}</td>  
+              <td class="tbl2">{{area.DiseaseID}}</td>  
+              <td class="tbl2">{{area.AreaName}}</td>
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadAreaToEdit(area.AreaID)">Edit</button>  
+              </td>  
+              <td class="tbl2">  
+                <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteArea(area.AreaID)">Delete</button>  
+              </td>  
+            </tr>  
+    
+          </table>  
+      </form>  
+    </mat-card-content>  
+  </mat-card>  
+  </div>

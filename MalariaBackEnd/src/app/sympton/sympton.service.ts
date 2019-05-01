@@ -9,5 +9,31 @@ import { Sympton } from './sympton';
 })
 export class SymptonService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getAllSymptoms()
+  {
+    return this.http.get('http://localhost:60090/api/Symptom/getAllSymptoms');
+  }
+
+  getSymptomById(sympton:number)
+  {
+    return this.http.get('http://localhost:60090/api/Symptom/getSymptomById/'+sympton);
+  }
+
+  addSymptom(sympton:Object)
+  {
+    return this.http.post('http://localhost:60090/api/Symptom/addSymptom',sympton);
+  }
+
+  updateSymptom(sympton:Object)
+  {
+    return this.http.get('http://localhost:60090/api/Symptom/updateSymptom');
+  }
+
+  deleteSymptom(sympton:number)
+  {
+    return this.http.post('http://localhost:60090/api/Symptom/deleteSymptom', sympton);
+  }
 }
+

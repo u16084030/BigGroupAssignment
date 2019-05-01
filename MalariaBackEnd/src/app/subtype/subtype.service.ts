@@ -9,5 +9,32 @@ import { Subtype } from './subtype';
 })
 export class SubtypeService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getAllSubtypes()
+  {
+    return this.http.get('http://localhost:60090/api/Subtype/getAllSubtypes');
+  }
+
+  getSubtypeById(subtype:number)
+  {
+    return this.http.get('http://localhost:60090/api/Subtype/getSubtypeById/'+subtype);
+  }
+
+  addSubtype(subtype:Object)
+  {
+    return this.http.post('http://localhost:60090/api/Subtype/addSubtype',subtype);
+  }
+
+  updateSubtype(subtype:Object)
+  {
+    return this.http.get('http://localhost:60090/api/Subtype/updateSubtype');
+  }
+
+  deleteSubtype(subtype:number)
+  {
+    return this.http.post('http://localhost:60090/api/Subtype/deleteSubtype', subtype);
+  }
 }
+
+

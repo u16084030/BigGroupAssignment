@@ -1,9 +1,9 @@
 export class Sympton {
-    SymptonID : number;
+    SymptomID : number;
     DiseaseID : number;
-    SymptonName : string;
-    SymptonDescription : string;
-    SymptonSeverity : string;
-    SymptonAppears : string;
+    SymptomName : string;
+    SymptomDescription : string;
+    SymptomSeverity : string;
+    SymptomAppears : string;
     DefiningCharacteristic : string;
 }

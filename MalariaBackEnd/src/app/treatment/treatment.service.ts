@@ -9,5 +9,31 @@ import { Treatment } from './treatment';
 })
 export class TreatmentService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getAllTreatments()
+  {
+    return this.http.get('http://localhost:60090/api/Treatment/getAllTreatments');
+  }
+
+  getTreatmentById(treatment:number)
+  {
+    return this.http.get('http://localhost:60090/api/Treatment/getTreatmentById/'+treatment);
+  }
+
+  addTreatment(treatment:Object)
+  {
+    return this.http.post('http://localhost:60090/api/Treatment/addTreatment',treatment);
+  }
+
+  updateTreatment(treatment:Object)
+  {
+    return this.http.get('http://localhost:60090/api/Treatment/updateTreatment');
+  }
+
+  deleteTreatment(treatment:number)
+  {
+    return this.http.post('http://localhost:60090/api/Treatment/deleteTreatment', treatment);
+  }
 }
+

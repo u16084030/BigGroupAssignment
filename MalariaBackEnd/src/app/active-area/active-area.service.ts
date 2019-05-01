@@ -9,5 +9,31 @@ import { ActiveArea } from './active-area';
 })
 export class ActiveAreaService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getAllActiveAreas()
+  {
+    return this.http.get('http://localhost:60090/api/ActiveArea/getAllActiveAreas');
+  }
+
+  getAreaById(area:number)
+  {
+    return this.http.get('http://localhost:60090/api/ActiveArea/getAreaById/'+area);
+  }
+
+  addActiveArea(area:Object)
+  {
+    return this.http.post('http://localhost:60090/api/ActiveArea/addActiveArea',area);
+  }
+
+  updateActiveArea(area:Object)
+  {
+    return this.http.get('http://localhost:60090/api/ActiveArea/updateActiveArea');
+  }
+
+  deleteActiveArea(area:number)
+  {
+    return this.http.post('http://localhost:60090/api/ActiveArea/deleteActiveArea', area);
+  }
 }
+

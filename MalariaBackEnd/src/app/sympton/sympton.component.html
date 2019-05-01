@@ -1,5 +1,110 @@
-<br>
-<br>
-<br><p>
-  sympton works!
-</p>
+<div class="container">  
+  
+  <mat-card>  
+    <mat-toolbar color="accent">  
+      <div align="center" style="color:white;text-align: right;">  
+        Symptons of Malaria  
+      </div>    
+    </mat-toolbar>  
+  <br><br>  
+    <mat-card-content>  
+      <form [formGroup]="symptonForm"(ngSubmit)="onFormSubmit(symptonForm.value)">  
+              <table>  
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="DiseaseID" matTooltip="1 is used for Malaria" matInput placeholder="Disease ID">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!symptonForm.get('DiseaseID').value && symptonForm.get('DiseaseID').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="SymptomName" matTooltip="Add name of Sympton" matInput placeholder="Sympton Name">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!symptonForm.get('SymptomName').value && symptonForm.get('SymptomName').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="SymptomDescription" matTooltip="Add a description for the Symtpon" matInput placeholder="Sympton Description">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!symptonForm.get('SymptomDescription').value && symptonForm.get('SymptomDescription').touched"></span>  
+                    </mat-error>  
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="SymptomSeverity" matTooltip="Add a description of the severity" matInput placeholder="Sympton Severity">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!symptonForm.get('SymptomSeverity').value && symptonForm.get('SymptomSeverity').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="SymptomAppears" matTooltip="Add a description of how it appears" matInput placeholder="Sympton Appearance">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!symptonForm.get('SymptomAppears').value && symptonForm.get('SymptomAppears').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="DefiningCharacteristic" matTooltip="Add the defining characteristic" matInput placeholder="Sympton Defining Characteristic">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!symptonForm.get('DefiningCharacteristic').value && symptonForm.get('DefiningCharacteristic').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                    
+                </tr>    
+                <tr>  
+                  <td></td>  
+                  <td  class="content-center">  
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!symptonForm.valid">Submit</button>      
+                    <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                  </td>  
+                  <td>  
+                    <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                      {{message}}  
+                    </p>  
+                  </td>  
+                </tr>  
+              </table>  
+  <br><br> 
+        <table class="table" >  
+            <tr ngclass="btn-primary">
+              <th class="tbl2">Sympton ID</th>    
+              <th class="tbl2">Disease ID</th>  
+              <th class="tbl2">Sympton Name</th>  
+              <th class="tbl2">Sympton Description</th>  
+              <th class="tbl2">Sympton Severity</th> 
+              <th class="tbl2">Sympton Appears</th>  
+              <th class="tbl2">Defining Characteristic</th>  
+            </tr>  
+            <tr *ngFor="let sympton of allSymptons | async"> 
+              <td class="tbl2">{{sympton.SymptomID}}</td>
+              <td class="tbl2">{{sympton.DiseaseID}}</td>  
+              <td class="tbl2">{{sympton.SymptomName}}</td>  
+              <td class="tbl2">{{sympton.SymptomDescription}}</td>  
+              <td class="tbl2">{{sympton.SymptomSeverity}}</td>
+              <td class="tbl2">{{sympton.SymptomAppears}}</td>  
+              <td class="tbl2">{{sympton.DefiningCharacteristic}}</td>
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadSymptonToEdit(sympton.SymptomID)">Edit</button>  
+              </td>  
+              <td class="tbl2">  
+                <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteSympton(sympton.SymptomID)">Delete</button>  
+              </td>  
+            </tr>  
+    
+          </table>  
+      </form>  
+    </mat-card-content>  
+  </mat-card>  
+  </div>
