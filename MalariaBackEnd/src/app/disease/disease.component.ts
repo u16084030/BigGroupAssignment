@@ -22,8 +22,11 @@ export class DiseaseComponent implements OnInit {
   ngOnInit() {    
       this.diseaseForm = this.formbulider.group({  
       DiseaseID: ['', [Validators.required]],  
-      DiseaseDescription: ['', [Validators.required]],  
-      DiseaseRanking: ['', [Validators.required]], 
+      CommonName: ['', [Validators.required]],  
+      ScientificName: ['', [Validators.required]],
+      Pathogen: ['', [Validators.required]],  
+      IncubationPeriod: ['', [Validators.required]],  
+      DiseaseDescription: ['', [Validators.required]], 
     });
       this.loadAllDiseases();  
     }  

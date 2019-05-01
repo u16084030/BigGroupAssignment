@@ -23,7 +23,7 @@ export class DiseaseService {
 
   addDisease(disease:Object)
   {
-    return this.http.get('http://localhost:60090/api/Disease/addDisease');
+    return this.http.post('http://localhost:60090/api/Disease/addDisease', disease);
   }
 
   updateDisease(disease:Object)
@@ -33,6 +33,6 @@ export class DiseaseService {
 
   deleteDiseaseById(disease:number)
   {
-    return this.http.get('http://localhost:60090/api/Disease/deleteDiseaseById/'+disease);
+    return this.http.post('http://localhost:60090/api/Disease/deleteDiseaseById/', disease);
   }
 }
