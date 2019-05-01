@@ -11,15 +11,20 @@ import { Cause } from '../cause/cause';
 })
 export class CauseComponent implements OnInit {
 
-  allCauses: any;
+  allCauses: Object;
 
   constructor(private formbulider: FormBuilder, private causeService:CauseService) { }
 
   ngOnInit() {    
-      this.loadAllEmployees();  
-    }  
-    loadAllEmployees() {  
-      this.allCauses = this.causeService.getAllCauses();  
+      this.loadAllCauses();  
     }  
 
-}
+    loadAllCauses() {  
+      this.allCauses = this.causeService.getAllCauses();  
+      //this.causeService.getAllCauses().subscribe(data => {
+        //this.allCauses = data
+        //console.log(this.allCauses)
+    }
+
+  }
+
