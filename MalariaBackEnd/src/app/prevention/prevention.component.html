@@ -1,0 +1,77 @@
+<div class="container">  
+  
+  <mat-card>  
+    <mat-toolbar color="accent">  
+      <div align="center" style="color:white;text-align: right;">  
+        Preventions of The Disease - Malaria  
+      </div>    
+    </mat-toolbar>  
+  <br><br>  
+    <mat-card-content>  
+      <form [formGroup]="preventionForm"(ngSubmit)="onFormSubmit(preventionForm.value)">  
+              <table>  
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="CauseID" matTooltip="Cause ID" matInput placeholder="Cause ID">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!preventionForm.get('CauseID').value && preventionForm.get('CauseID').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="PreventDescription" matTooltip="Add a prevention description" matInput placeholder="Prevention Description">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!preventionForm.get('PreventDescription').value && preventionForm.get('PreventDescription').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="PreventEffective" matTooltip="Effectiveness of the prevention" matInput placeholder="Prevent Effective">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!preventionForm.get('PreventEffective').value && preventionForm.get('PreventEffective').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                </tr>      
+                <tr>  
+                  <td></td>  
+                  <td  class="content-center">  
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!preventionForm.valid">Submit</button>      
+                    <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                  </td>  
+                  <td>  
+                    <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                      {{message}}  
+                    </p>  
+                  </td>  
+                </tr>  
+              </table>  
+  <br><br> 
+        <table class="table" >  
+            <tr ngclass="btn-primary">  
+              <th class="tbl2">Prevent ID</th> 
+              <th class="tbl2">Cause ID</th> 
+              <th class="tbl2">Prevent Description</th>  
+              <th class="tbl2">Prevent Effective</th>   
+            </tr>  
+            <tr *ngFor="let prevention of allPreventions | async">  
+              <td class="tbl2">{{prevention.PreventID}}</td>  
+              <td class="tbl2">{{prevention.CauseID}}</td>  
+              <td class="tbl2">{{prevention.PreventDescription}}</td>
+              <td class="tbl2">{{prevention.PreventEffective}}</td>
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadPreventionToEdit(prevention.PreventionID)">Edit</button>  
+              </td>  
+              <td class="tbl2">  
+                <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deletePrevention(prevention.PreventionID)">Delete</button>  
+              </td>  
+            </tr>  
+    
+          </table>  
+      </form>  
+    </mat-card-content>  
+  </mat-card>  
+  </div>

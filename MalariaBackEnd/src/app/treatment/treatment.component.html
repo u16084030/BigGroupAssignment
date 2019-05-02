@@ -1,0 +1,132 @@
+<div class="container">  
+  
+    <mat-card>  
+      <mat-toolbar color="accent">  
+        <div align="center" style="color:white;text-align: right;">  
+          Treatments for Malaria  
+        </div>    
+      </mat-toolbar>  
+    <br><br>  
+      <mat-card-content>  
+        <form [formGroup]="treatmentForm"(ngSubmit)="onFormSubmit(treatmentForm.value)">  
+                <table>  
+                  <tr>  
+                    <td class="tbl1">  
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="DiseaseID" matTooltip="1 is used for Malaria" matInput placeholder="Disease ID">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!treatmentForm.get('DiseaseID').value && treatmentForm.get('DiseaseID').touched"></span>  
+                      </mat-error>  
+                    </td>  
+                    <td class="tbl1">  
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="TreatmentName" matTooltip="Add a treatment name" matInput placeholder="Treatment Name">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!treatmentForm.get('TreatmentName').value && treatmentForm.get('TreatmentName').touched"></span>  
+                      </mat-error>  
+                    </td>  
+                    <td class="tbl1">  
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="TreatmentDescription" matTooltip="Add a description" matInput placeholder="Description">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!treatmentForm.get('TreatmentDescription').value && treatmentForm.get('TreatmentDescription').touched"></span>  
+                      </mat-error>  
+                    </td>  
+                  </tr>    
+                  <tr>  
+                      <td class="tbl1">  
+                        <mat-form-field class="demo-full-width">  
+                          <input formControlName="AvailableAt" matTooltip="Where is it available?" matInput placeholder="Available at">  
+                        </mat-form-field>  
+                        <mat-error>  
+                          <span *ngIf="!treatmentForm.get('AvailableAt').value && treatmentForm.get('AvailableAt').touched"></span>  
+                        </mat-error>  
+                      </td>  
+                      <td class="tbl1">  
+                        <mat-form-field class="demo-full-width">  
+                          <input formControlName="TreatmentDuration" matTooltip="Add a duration" matInput placeholder="Treatment Duration">  
+                        </mat-form-field>  
+                        <mat-error>  
+                          <span *ngIf="!treatmentForm.get('TreatmentDuration').value && treatmentForm.get('TreatmentDuration').touched"></span>  
+                        </mat-error>  
+                      </td>  
+                      <td class="tbl1">  
+                        <mat-form-field class="demo-full-width">  
+                          <input formControlName="AfterCare" matTooltip="Add an aftercare" matInput placeholder="AfterCare">  
+                        </mat-form-field>  
+                        <mat-error>  
+                          <span *ngIf="!treatmentForm.get('AfterCare').value && treatmentForm.get('AfterCare').touched"></span>  
+                        </mat-error>  
+                      </td>  
+                    </tr>    
+                    <tr>  
+                        <td class="tbl1">  
+                          <mat-form-field class="demo-full-width">  
+                            <input formControlName="TreatmentEffective" matTooltip="Effectiveness of treatment" matInput placeholder="Treatment Effective">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!treatmentForm.get('TreatmentEffective').value && treatmentForm.get('TreatmentEffective').touched"></span>  
+                          </mat-error>  
+                        </td>  
+                        <td class="tbl1">  
+                          <mat-form-field class="demo-full-width">  
+                            <input formControlName="Aftermath" matTooltip="Add an aftermath" matInput placeholder="Aftermath">  
+                          </mat-form-field>  
+                          <mat-error>  
+                            <span *ngIf="!treatmentForm.get('Aftermath').value && treatmentForm.get('Aftermath').touched"></span>  
+                          </mat-error>  
+                        </td>  
+                        
+                      </tr>    
+                  <tr>  
+                    <td></td>  
+                    <td  class="content-center">  
+                      <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!treatmentForm.valid">Submit</button>      
+                      <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                    </td>  
+                    <td>  
+                      <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                        {{message}}  
+                      </p>  
+                    </td>  
+                  </tr>  
+                </table>  
+    <br><br> 
+          <table class="table" >  
+              <tr ngclass="btn-primary">  
+                <th class="tbl2">Treatment ID</th>  
+                <th class="tbl2">Disease ID</th>  
+                <th class="tbl2">Treatment Name</th>  
+                <th class="tbl2">Treatment Description</th>   
+                <th class="tbl2">Available At</th>  
+                <th class="tbl2">Treatment Duration</th>  
+                <th class="tbl2">AfterCare</th>  
+                <th class="tbl2">Treatment Effective</th> 
+                <th class="tbl2">Aftermath</th>
+              </tr>  
+              <tr *ngFor="let trt of allTreatments | async">  
+                <td class="tbl2">{{trt.TreatmentID}}</td>  
+                <td class="tbl2">{{trt.DiseaseID}}</td>  
+                <td class="tbl2">{{trt.TreatmentName}}</td>  
+                <td class="tbl2">{{trt.TreatmentDescription}}</td>
+                <td class="tbl2">{{trt.AvailableAt}}</td>  
+                <td class="tbl2">{{trt.TreatmentDuration}}</td>  
+                <td class="tbl2">{{trt.AfterCare}}</td>  
+                <td class="tbl2">{{trt.TreatmentEffective}}</td>
+                <td class="tbl2">{{trt.Aftermath}}</td>
+                <td class="tbl2">  
+                  <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadTreatmentToEdit(trt.TreatmentID)">Edit</button>  
+                </td>  
+                <td class="tbl2">  
+                  <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteTreatment(trt.TreatmentID)">Delete</button>  
+                </td>  
+              </tr>  
+      
+            </table>  
+        </form>  
+      </mat-card-content>  
+    </mat-card>  
+    </div>

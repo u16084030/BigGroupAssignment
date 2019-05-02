@@ -1,0 +1,87 @@
+<div class="container">  
+  
+  <mat-card>  
+    <mat-toolbar color="accent">  
+      <div align="center" style="color:white;text-align: right;">  
+        Subtypes of Malaria  
+      </div>    
+    </mat-toolbar>  
+  <br><br>  
+    <mat-card-content>  
+      <form [formGroup]="subtypeForm"(ngSubmit)="onFormSubmit(subtypeForm.value)">  
+              <table>  
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="DiseaseID" matTooltip="1 is used for Malaria" matInput placeholder="Disease ID">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!subtypeForm.get('DiseaseID').value && subtypeForm.get('DiseaseID').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="SubtypeName" matTooltip="Add a Subtype Name" matInput placeholder="Subtype Name">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!subtypeForm.get('SubtypeName').value && subtypeForm.get('SubtypeName').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="Strain" matTooltip="Add a Strain" matInput placeholder="Strain">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!subtypeForm.get('Strain').value && subtypeForm.get('Strain').touched"></span>  
+                    </mat-error>  
+                  </td>
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="SubtypeDescription" matTooltip="Add Subtype description" matInput placeholder="Subtype Description">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!subtypeForm.get('SubtypeDescription').value && subtypeForm.get('SubtypeDescription').touched"></span>  
+                    </mat-error>  
+                  </td> 
+                </tr>    
+                <tr>  
+                  <td></td>  
+                  <td  class="content-center">  
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!subtypeForm.valid">Submit</button>      
+                    <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                  </td>  
+                  <td>  
+                    <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                      {{message}}  
+                    </p>  
+                  </td>  
+                </tr>  
+              </table>  
+  <br><br> 
+        <table class="table" >  
+            <tr ngclass="btn-primary">  
+              <th class="tbl2">Subtype ID</th>  
+              <th class="tbl2">Disease ID</th>  
+              <th class="tbl2">Subtype Name</th>  
+              <th class="tbl2">Strain</th>  
+              <th class="tbl2">Subtype Description</th>  
+            </tr>  
+            <tr *ngFor="let sub of allSubtypes | async">  
+              <td class="tbl2">{{sub.SubtypeID}}</td>  
+              <td class="tbl2">{{sub.DiseaseID}}</td>  
+              <td class="tbl2">{{sub.SubtypeName}}</td>  
+              <td class="tbl2">{{sub.Strain}}</td>
+              <td class="tbl2">{{sub.SubtypeDescription}}</td>
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadSubtypeToEdit(sub.SubtypeID)">Edit</button>  
+              </td>  
+              <td class="tbl2">  
+                <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteSubtype(sub.SubtypeID)">Delete</button>  
+              </td>  
+            </tr>  
+    
+          </table>  
+      </form>  
+    </mat-card-content>  
+  </mat-card>  
+  </div>

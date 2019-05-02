@@ -1,0 +1,102 @@
+<div class="container">  
+  
+  <mat-card>  
+    <mat-toolbar color="accent">  
+      <div align="center" style="color:white;text-align: right;">  
+        Outbreaks of Malaria  
+      </div>    
+    </mat-toolbar>  
+  <br><br>  
+    <mat-card-content>  
+      <form [formGroup]="outbreakForm"(ngSubmit)="onFormSubmit(outbreakForm.value)">  
+              <table>  
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="AreaID" matTooltip="Insert the area ID for the outbreak" matInput placeholder="Area ID">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!outbreakForm.get('AreaID').value && outbreakForm.get('AreaID').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">
+                      <mat-form-field class="demo-full-width">  
+                        <input matInput [matDatepicker]="picker"matTooltip="Enter Date Of Outbreak" formControlName="OutbreakDate"placeholder="Choose Date Of Outbreak">  
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
+                        <mat-datepicker #picker></mat-datepicker>  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!outbreakForm.get('OutbreakDate').value && outbreakForm.get('OutbreakDate').touched"></span>  
+                      </mat-error>   
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="OutbreakCity" matTooltip="Add a city for the outbreak" matInput placeholder="Outbreak City">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!outbreakForm.get('OutbreakCity').value && outbreakForm.get('OutbreakCity').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                </tr> 
+                <tr>  
+                    <td class="tbl1">  
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="NumberOfCasualties" matTooltip="Enter the Number Of Casualties" matInput placeholder="Number Of Casualties">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!outbreakForm.get('NumberOfCasualties').value && outbreakForm.get('NumberOfCasualties').touched"></span>  
+                      </mat-error>  
+                    </td>   
+                    <td class="tbl1">  
+                      <mat-form-field class="demo-full-width">  
+                        <input formControlName="OutbreakDescription" matTooltip="Enter a description for the outbreak" matInput placeholder="Outbreak Description">  
+                      </mat-form-field>  
+                      <mat-error>  
+                        <span *ngIf="!outbreakForm.get('OutbreakDescription').value && outbreakForm.get('OutbreakDescription').touched"></span>  
+                      </mat-error>  
+                    </td>
+                    <td></td>  
+                  </tr>   
+                <tr>  
+                  <td></td>  
+                  <td  class="content-center">  
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!outbreakForm.valid">Submit</button>      
+                    <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                  </td>  
+                  <td>  
+                    <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                      {{message}}  
+                    </p>  
+                  </td>  
+                </tr>  
+              </table>  
+  <br><br> 
+        <table class="table" >  
+            <tr ngclass="btn-primary">  
+              <th class="tbl2">Outbreak ID</th>  
+              <th class="tbl2">Area ID</th>  
+              <th class="tbl2">Outbreak Date</th>  
+              <th class="tbl2">Outbreak City</th>
+              <th class="tbl2">Number Of Casualties</th>  
+              <th class="tbl2">Outbreak Description</th>   
+            </tr>  
+            <tr *ngFor="let outbreak of allOutbreaks | async">  
+              <td class="tbl2">{{outbreak.OutbreakID}}</td>  
+              <td class="tbl2">{{outbreak.AreaID}}</td>  
+              <td class="tbl2">{{outbreak.OutbreakDate}}</td>  
+              <td class="tbl2">{{outbreak.OutbreakCity}}</td>
+              <td class="tbl2">{{outbreak.NumberOfCasualties}}</td>  
+              <td class="tbl2">{{outbreak.OutbreakDescription}}</td>
+              <td class="tbl2">  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadOutbreakToEdit(outbreak.OutbreakID)">Edit</button>  
+              </td>  
+              <td class="tbl2">  
+                <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteOutbreak(outbreak.OutbreakID)">Delete</button>  
+              </td>  
+            </tr>  
+    
+          </table>  
+      </form>  
+    </mat-card-content>  
+  </mat-card>  
+  </div>
