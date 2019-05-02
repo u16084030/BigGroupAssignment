@@ -28,12 +28,12 @@ export class TreatmentService {
 
   updateTreatment(treatment:Object)
   {
-    return this.http.get('http://localhost:60090/api/Treatment/updateTreatment');
+    return this.http.post('http://localhost:60090/api/Treatment/updateTreatment',treatment);
   }
 
   deleteTreatment(treatment:number)
   {
-    return this.http.post('http://localhost:60090/api/Treatment/deleteTreatment', treatment);
+    return this.http.delete('http://localhost:60090/api/Treatment/deleteTreatment/'+treatment);
   }
 }
 

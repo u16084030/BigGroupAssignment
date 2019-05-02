@@ -42,15 +42,15 @@ export class SubtypeComponent implements OnInit {
     this.CreateSubtype(subtype);  
     this.subtypeForm.reset();  
   }  
-  loadSubtypeToEdit(subtypeId: number) {  
-    this.subtypeService.getSubtypeById(subtypeId).subscribe(subtype=> {  
+  loadSubtypeToEdit(subtype: Subtype) {  
+    this.subtypeService.updateSubtype(subtype).subscribe(()=> {  
       this.message = null;  
       this.dataSaved = false;  
-      this.subtypeIdUpdate = 1;//cause.CauseID;  
-      this.subtypeForm.controls['DiseaseID'].setValue(1);//cause.DiseaseID);  
-      this.subtypeForm.controls['SubtypeName'].setValue("Fuck this");//cause.CauseDescription);  
-      this.subtypeForm.controls['Strain'].setValue("HighAsFuck");//cause.CauseRanking); 
-      this.subtypeForm.controls['SubtypeDescription'].setValue("HighAsFuck");//cause.CauseRanking);  
+      this.subtypeIdUpdate = subtype.SubtypeID;//cause.CauseID;  
+      this.subtypeForm.controls['DiseaseID'].setValue(subtype.DiseaseID);//cause.DiseaseID);  
+      this.subtypeForm.controls['SubtypeName'].setValue(subtype.SubtypeName);//cause.CauseDescription);  
+      this.subtypeForm.controls['Strain'].setValue(subtype.Strain);//cause.CauseRanking); 
+      this.subtypeForm.controls['SubtypeDescription'].setValue(subtype.SubtypeDescription);//cause.CauseRanking);  
     });  
   
   }  

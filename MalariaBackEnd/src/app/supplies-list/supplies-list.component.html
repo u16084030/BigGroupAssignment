@@ -10,7 +10,15 @@
     <mat-card-content>  
       <form [formGroup]="suppliesForm"(ngSubmit)="onFormSubmit(suppliesForm.value)">  
               <table>  
-                <tr>  
+                <tr> 
+                    <td class="tbl1">  
+                        <mat-form-field class="demo-full-width">  
+                          <input formControlName="PreventID" matTooltip="Enter prevention ID" matInput placeholder="Prevention ID">  
+                        </mat-form-field>  
+                        <mat-error>  
+                          <span *ngIf="!suppliesForm.get('PreventID').value && suppliesForm.get('PreventID').touched"></span>  
+                        </mat-error>  
+                      </td>   
                   <td class="tbl1">  
                     <mat-form-field class="demo-full-width">  
                       <input formControlName="SupplyName" matTooltip="Enter name of supply" matInput placeholder="Supply Name">  
@@ -31,7 +39,7 @@
                 <tr>  
                   <td></td>  
                   <td  class="content-center">  
-                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!suppliesForm.valid">Submit</button>      
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button">Submit</button>      <!--[disabled]="!suppliesForm.valid"-->
                     <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
                   </td>  
                   <td>  
@@ -50,11 +58,12 @@
               <th class="tbl2">Avaialble At</th>   
             </tr>  
             <tr *ngFor="let supply of allSupplies | async">  
-              <td class="tbl2">{{supply.SupplyID}}</td>  
+              <td class="tbl2">{{supply.SupplyID}}</td> 
+              <td class="tbl2">{{supply.PreventID}}</td>  
               <td class="tbl2">{{supply.SupplyName}}</td>  
               <td class="tbl2">{{supply.AvailableAt}}</td> 
               <td class="tbl2">  
-                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadSupplyToEdit(supply.SupplyID)">Edit</button>  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadSupplyToEdit(supply)">Edit</button>  
               </td>  
               <td class="tbl2">  
                 <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteSupply(supply.SupplyID)">Delete</button>  

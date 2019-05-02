@@ -39,14 +39,14 @@ export class CauseComponent implements OnInit {
       this.CreateCause(cause);  
       this.causeForm.reset();  
     }  
-    loadCauseToEdit(causeId: number) {  
-      this.causeService.getCauseById(causeId).subscribe(cause=> {  
+    loadCauseToEdit(cause: Cause) {  
+      this.causeService.updateCause(cause).subscribe(()=> {  
         this.message = null;  
         this.dataSaved = false;  
-        this.causeIdUpdate = 1;//cause.CauseID;  
-        this.causeForm.controls['DiseaseID'].setValue(1);//cause.DiseaseID);  
-       this.causeForm.controls['CauseDescription'].setValue("Fuck this");//cause.CauseDescription);  
-        this.causeForm.controls['CauseRanking'].setValue("HighAsFuck");//cause.CauseRanking);  
+        this.causeIdUpdate = cause.CauseID;  
+        this.causeForm.controls['DiseaseID'].setValue(cause.DiseaseID);  
+       this.causeForm.controls['CauseDescription'].setValue(cause.CauseDescription);  
+        this.causeForm.controls['CauseRanking'].setValue(cause.CauseRanking);  
       });  
     
     }  

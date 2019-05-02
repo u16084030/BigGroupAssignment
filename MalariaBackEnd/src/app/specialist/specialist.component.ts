@@ -44,14 +44,21 @@ export class SpecialistComponent implements OnInit {
       this.CreateSpecialist(specialist);  
       this.specialistForm.reset();  
     }  
-    loadSpecialistToEdit(specialistId: number) {  
-      this.specialistService.getSpecialistById(specialistId).subscribe(specialist=> {  
+    loadSpecialistToEdit(specialist: Specialist) {  
+      this.specialistService.updateSpecialist(specialist).subscribe(()=> {  
         this.message = null;  
         this.dataSaved = false;  
-        this.specialistIdUpdate = 1;//Specialist.specialistID;  
-        this.specialistForm.controls['CauseID'].setValue(1);//Specialist.DiseaseID);  
-       this.specialistForm.controls['PreventDescription'].setValue("Fuck this");//Specialist.SpecialistDescription);  
-        this.specialistForm.controls['PreventEffective'].setValue("HighAsFuck");//Specialist.SpecialistRanking);  
+        this.specialistIdUpdate = specialist.SpecialistID;  
+        this.specialistForm.controls['DiseaseID'].setValue(specialist.DiseaseID);//Specialist.DiseaseID);  
+       this.specialistForm.controls['FirstName'].setValue(specialist.FirstName);//Specialist.SpecialistDescription);  
+        this.specialistForm.controls['LastName'].setValue(specialist.LastName);//Specialist.SpecialistRanking);  
+        this.specialistForm.controls['UserPassword'].setValue(specialist.UserPassword);//Specialist.DiseaseID);  
+       this.specialistForm.controls['UserGUID'].setValue(specialist.UserGUID);//Specialist.SpecialistDescription);  
+        this.specialistForm.controls['GUIDExpiry'].setValue(specialist.GUIDExpiry);//Specialist.SpecialistRanking);  
+        this.specialistForm.controls['ContactNumber'].setValue(specialist.ContactNumber);//Specialist.DiseaseID);  
+       this.specialistForm.controls['Email'].setValue(specialist.Email);//Specialist.SpecialistDescription);  
+        this.specialistForm.controls['Qualification'].setValue(specialist.Qualification);//Specialist.SpecialistRanking);  
+        this.specialistForm.controls['Hospital'].setValue(specialist.Hospital);//Specialist.SpecialistRanking);
       });  
     
     }  
@@ -79,7 +86,7 @@ export class SpecialistComponent implements OnInit {
     }   
     deleteSpecialist(specialistId: number) {  
       if (confirm("Are you sure you want to delete this ?")) {   
-      this.specialistService.deleteSpecialistById(specialistId).subscribe(() => {  
+      this.specialistService.deleteSpecialist(specialistId).subscribe(() => {  
         this.dataSaved = true;  
         this.message = 'Record Deleted Succefully';  
         this.loadAllSpecialists();  

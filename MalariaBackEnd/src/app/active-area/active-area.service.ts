@@ -28,12 +28,12 @@ export class ActiveAreaService {
 
   updateActiveArea(area:Object)
   {
-    return this.http.get('http://localhost:60090/api/ActiveArea/updateActiveArea');
+    return this.http.post('http://localhost:60090/api/ActiveArea/updateActiveArea', area);
   }
 
   deleteActiveArea(area:number)
   {
-    return this.http.post('http://localhost:60090/api/ActiveArea/deleteActiveArea', area);
+    return this.http.delete('http://localhost:60090/api/ActiveArea/deleteActiveArea/'+area);
   }
 }
 

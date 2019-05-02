@@ -28,12 +28,12 @@ export class SymptonService {
 
   updateSymptom(sympton:Object)
   {
-    return this.http.get('http://localhost:60090/api/Symptom/updateSymptom');
+    return this.http.post('http://localhost:60090/api/Symptom/updateSymptom', sympton);
   }
 
   deleteSymptom(sympton:number)
   {
-    return this.http.post('http://localhost:60090/api/Symptom/deleteSymptom', sympton);
+    return this.http.delete('http://localhost:60090/api/Symptom/deleteSymptom/'+sympton);
   }
 }
 

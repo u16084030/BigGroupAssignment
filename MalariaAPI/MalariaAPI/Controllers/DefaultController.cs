@@ -12,7 +12,7 @@ using System.Dynamic;
 
 namespace MalariaAPI.Controllers
 {
-    [EnableCors(origins: "http://localhost:60090/api", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DefaultController : ApiController
     {
         // GET: api/Default
@@ -87,7 +87,6 @@ namespace MalariaAPI.Controllers
             
 
             
-            /*DiseaseDBEntities db = new DiseaseDBEntities();
             db.Configuration.ProxyCreationEnabled = false;
             List<dynamic> dynamicCauses = new List<dynamic>();
             foreach (Cause cause in db.Causes.ToList())
@@ -102,28 +101,28 @@ namespace MalariaAPI.Controllers
                     dynamicCauses.Add(dynamicCause);
                 }
             }
-            return dynamicCauses;*/
-            dynamic dynamicCause = new ExpandoObject();
+            //return dynamicCauses;
+            //dynamic dynamicCause = new ExpandoObject();
             //CauseDetail objCause = new CauseDetail();
-            int ID = Convert.ToInt32(id);
-            try
-            {
-                dynamicCause = db.Causes.Find(ID);
-                if (dynamicCause == null)
-                {
-                    return NotFound();
-                }
+            //int ID = Convert.ToInt32(id);
+            //try
+            //{
+            //    dynamicCause = db.Causes.Find(ID);
+            //    if (dynamicCause == null)
+            //    {
+            //        return NotFound();
+            //    }
 
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            var response = Request.CreateResponse(HttpStatusCode.OK, dynamicCause);
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
-            return response;
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+            //var response = Request.CreateResponse(HttpStatusCode.OK, dynamicCause);
+            //response.Headers.Add("Access-Control-Allow-Origin", "*");
+            //return response;
 
-            //return Ok(dynamicCause);
+            return Ok(dynamicCauses);
         }
 
 
@@ -159,8 +158,8 @@ namespace MalariaAPI.Controllers
             {
                 dynamic dynamicPrevention = new ExpandoObject();
                 dynamicPrevention.CauseID = prevention.CauseID;
-                dynamicPrevention.PreventionID = prevention.PreventID;
-                dynamicPrevention.PreventionDescription = prevention.PreventDescription;
+                dynamicPrevention.PreventID = prevention.PreventID;
+                dynamicPrevention.PreventDescription = prevention.PreventDescription;
                 dynamicPrevention.PreventEffective = prevention.PreventEffective;
                 dynamicPreventions.Add(dynamicPrevention);
             }
@@ -698,8 +697,7 @@ namespace MalariaAPI.Controllers
             return Ok();
         }
 
-<<<<<<< HEAD
-=======
+
         [System.Web.Http.Route("api/Outbreak/deleteOutbreak/{id}")]
         [System.Web.Mvc.HttpPost]
         public IHttpActionResult deleteOutbreak(int id)
