@@ -60,7 +60,7 @@
                 <tr>  
                   <td></td>  
                   <td  class="content-center">  
-                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!outbreakForm.valid">Submit</button>      
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button">Submit</button>      <!--[disabled]="!outbreakForm.valid"-->
                     <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
                   </td>  
                   <td>  
@@ -88,7 +88,7 @@
               <td class="tbl2">{{outbreak.NumberOfCasualties}}</td>  
               <td class="tbl2">{{outbreak.OutbreakDescription}}</td>
               <td class="tbl2">  
-                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadOutbreakToEdit(outbreak.OutbreakID)">Edit</button>  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadOutbreakToEdit(outbreak)">Edit</button>  
               </td>  
               <td class="tbl2">  
                 <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteOutbreak(outbreak.OutbreakID)">Delete</button>  

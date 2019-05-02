@@ -28,12 +28,12 @@ export class SubtypeService {
 
   updateSubtype(subtype:Object)
   {
-    return this.http.get('http://localhost:60090/api/Subtype/updateSubtype');
+    return this.http.post('http://localhost:60090/api/Subtype/updateSubtype',subtype);
   }
 
   deleteSubtype(subtype:number)
   {
-    return this.http.post('http://localhost:60090/api/Subtype/deleteSubtype', subtype);
+    return this.http.delete('http://localhost:60090/api/Subtype/deleteSubtype/'+subtype);
   }
 }
 

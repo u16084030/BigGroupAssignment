@@ -28,11 +28,11 @@ export class OutbreakService {
 
   updateOutbreak(outbreak:Object)
   {
-    return this.http.get('http://localhost:60090/api/Outbreak/updateOutbreak');
+    return this.http.post('http://localhost:60090/api/Outbreak/updateOutbreak',outbreak);
   }
 
   deleteOutbreakById(outbreak:number)
   {
-    return this.http.post('http://localhost:60090/api/Outbreak/deleteOutbreakById/', outbreak);
+    return this.http.delete('http://localhost:60090/api/Outbreak/deleteOutbreakById/'+outbreak);
   }
 }

@@ -11,9 +11,11 @@ import { SuppliesListComponent } from './supplies-list/supplies-list.component';
 import { SymptonComponent } from './sympton/sympton.component';
 import { TreatmentComponent } from './treatment/treatment.component';
 import { ActiveAreaComponent } from './active-area/active-area.component';
+import { LoginComponent } from './login/login.component'; 
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: LoginComponent },//{ path: '', component: AppComponent }
+  { path: 'app', component: AppComponent },
   { path: 'disease', component: DiseaseComponent },
   { path: 'cause', component: CauseComponent },
   { path: 'outbreak', component: OutbreakComponent },

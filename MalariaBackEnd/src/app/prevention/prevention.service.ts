@@ -28,11 +28,11 @@ export class PreventionService {
 
   updatePrevention(prevention:Object)
   {
-    return this.http.get('http://localhost:60090/api/Prevention/updatePrevention');
+    return this.http.post('http://localhost:60090/api/Prevention/updatePrevention',prevention);
   }
 
-  deletePreventionById(prevention:number)
+  deletePrevention(prevention:number)
   {
-    return this.http.post('http://localhost:60090/api/Prevention/deletePreventionById', prevention);
+    return this.http.delete('http://localhost:60090/api/Prevention/deletePrevention/'+prevention);
   }
 }

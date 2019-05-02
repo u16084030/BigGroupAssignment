@@ -28,11 +28,11 @@ export class CauseService {
 
   updateCause(cause:Object)
   {
-    return this.http.get('http://localhost:60090/api/Cause/updateCause');
+    return this.http.post('http://localhost:60090/api/Cause/updateCause',cause);
   }
 
   deleteCause(cause:number)
   {
-    return this.http.post('http://localhost:60090/api/Cause/deleteCause', cause);
+    return this.http.delete('http://localhost:60090/api/Cause/deleteCause/'+cause);
   }
 }

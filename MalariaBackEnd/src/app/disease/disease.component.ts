@@ -40,15 +40,15 @@ export class DiseaseComponent implements OnInit {
       this.CreateDisease(disease);  
       this.diseaseForm.reset();  
     }  
-    loadDiseaseToEdit(diseaseId: number) {  
-      this.diseaseService.getDiseaseById(diseaseId).subscribe(disease=> {  
+    loadDiseaseToEdit(disease: Disease) {  
+      this.diseaseService.updateDisease(disease).subscribe(()=> {  
         this.message = null;  
         this.dataSaved = false;    
-        this.diseaseForm.controls['CommonName'].setValue("Common name");//disease.CommonName);  
-        this.diseaseForm.controls['ScientificName'].setValue("Scientific name");//disease.ScientificName);  
-        this.diseaseForm.controls['Pathogen'].setValue("Pathogen name");//disease.Pathogen);
-        this.diseaseForm.controls['IncubationPeriod'].setValue("Incubation");//disease.IncubationPeriod);  
-        this.diseaseForm.controls['DiseaseDescription'].setValue("Description");//disease.DiseaseDescription);  
+        this.diseaseForm.controls['CommonName'].setValue(disease.CommonName);  
+        this.diseaseForm.controls['ScientificName'].setValue(disease.ScientificName);  
+        this.diseaseForm.controls['Pathogen'].setValue(disease.Pathogen);
+        this.diseaseForm.controls['IncubationPeriod'].setValue(disease.IncubationPeriod);  
+        this.diseaseForm.controls['DiseaseDescription'].setValue(disease.DiseaseDescription);  
       });  
     
     }  
