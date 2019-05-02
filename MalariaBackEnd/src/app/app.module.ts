@@ -23,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';  
 import { MatButtonModule, MatMenuModule, MatDatepickerModule,MatNativeDateModule , MatIconModule, MatCardModule, MatSidenavModule,MatFormFieldModule, MatInputModule, MatTooltipModule, MatToolbarModule } from '@angular/material';  
 import { MatRadioModule } from '@angular/material/radio';  
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component'; 
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SuppliesListComponent,
     SymptonComponent,
     TreatmentComponent,
-    NavComponent
+    NavComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
