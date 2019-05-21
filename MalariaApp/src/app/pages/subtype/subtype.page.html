@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>subtype</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list inset>
+        <ion-item *ngFor="let sub of allSubtypes | async">
+          <h2>{{sub.SubtypeName}}</h2>
+          <p>{{sub.Strain}}</p>
+          <p>{{sub.SubtypeDescription}}</p>
+        </ion-item>
+    </ion-list>
+</ion-content>
