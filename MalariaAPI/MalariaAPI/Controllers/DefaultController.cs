@@ -12,9 +12,328 @@ using System.Dynamic;
 
 namespace MalariaAPI.Controllers
 {
-    [EnableCors(origins: "http://localhost:60090/api", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DefaultController : ApiController
     {
+        [System.Web.Http.Route("api/ActiveArea/searchActiveAreas/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchActiveAreas(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getActiveAreas(db.ActiveAreas.ToList(), id);
+        }
+
+        private List<dynamic> getActiveAreas(List<ActiveArea> forClient, string search)
+        {
+            List<dynamic> dynamicActiveAreas = new List<dynamic>();
+            foreach (ActiveArea activeArea in forClient)
+            {
+                if (activeArea.AreaName == search)
+                {
+                    dynamic dynamicActiveArea = new ExpandoObject();
+                    dynamicActiveArea.AreaID = activeArea.AreaID;
+                    dynamicActiveArea.DiseaseID = activeArea.DiseaseID;
+                    dynamicActiveArea.AreaName = activeArea.AreaName;
+                    dynamicActiveAreas.Add(dynamicActiveArea);
+                    return dynamicActiveAreas;
+                }
+            }
+            return null;
+        }
+
+        [System.Web.Http.Route("api/Outbreak/searchOutbreaks/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchOutbreaks(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getOutbreaks(db.Outbreaks.ToList(), id);
+        }
+
+        private List<dynamic> getOutbreaks(List<Outbreak> forClient, string search)
+        {
+            List<dynamic> dynamicOutbreaks = new List<dynamic>();
+            foreach (Outbreak outbreak in forClient)
+            {
+                if (outbreak.OutbreakCity == search)
+                {
+                    dynamic dynamicOutbreak = new ExpandoObject();
+                    dynamicOutbreak.OutbreakID = outbreak.OutbreakID;
+                    dynamicOutbreak.AreaID = outbreak.AreaID;
+                    dynamicOutbreak.OutbreakCity = outbreak.OutbreakCity;
+                    dynamicOutbreak.OutbreakDate = outbreak.OutbreakDate;
+                    dynamicOutbreak.OutbreakDescription = outbreak.OutbreakDescription;
+                    dynamicOutbreak.NumberOfCasualties = outbreak.NumberOfCasualties;
+                    dynamicOutbreaks.Add(dynamicOutbreak);
+
+                    return dynamicOutbreaks;
+                }
+            }
+
+            return null;
+        }
+
+        [System.Web.Http.Route("api/Cause/searchCauses/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchCauses(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getCauses(db.Causes.ToList(), id);
+        }
+
+        private List<dynamic> getCauses(List<Cause> forClient, string search)
+        {
+            List<dynamic> dynamicCauses = new List<dynamic>();
+            foreach (Cause cause in forClient)
+            {
+                if (cause.CauseRanking == search)
+                {
+                    dynamic dynamicCause = new ExpandoObject();
+                    dynamicCause.CauseID = cause.CauseID;
+                    dynamicCause.DiseaseID = cause.DiseaseID;
+                    dynamicCause.CauseDescription = cause.CauseDescription;
+                    dynamicCause.CauseRanking = cause.CauseRanking;
+                    dynamicCauses.Add(dynamicCause);
+
+                    
+                }
+            }
+
+            return dynamicCauses;
+        }
+
+        [System.Web.Http.Route("api/Prevention/searchPreventions/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchPreventions(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getPreventions(db.Preventions.ToList(), id);
+        }
+
+        private List<dynamic> getPreventions(List<Prevention> forClient, string search)
+        {
+            List<dynamic> dynamicPreventions = new List<dynamic>();
+            foreach (Prevention prevention in forClient)
+            {
+                if (prevention.PreventEffective == search)
+                {
+                    dynamic dynamicPrevention = new ExpandoObject();
+                    dynamicPrevention.CauseID = prevention.CauseID;
+                    dynamicPrevention.PreventionID = prevention.PreventID;
+                    dynamicPrevention.PreventionDescription = prevention.PreventDescription;
+                    dynamicPrevention.PreventEffective = prevention.PreventEffective;
+                    dynamicPreventions.Add(dynamicPrevention);
+
+                    
+                }
+            }
+
+            return dynamicPreventions;
+        }
+
+        [System.Web.Http.Route("api/SuppliesList/searchSuppliesLists/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchSuppliesLists(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getSuppliesLists(db.SuppliesLists.ToList(), id);
+        }
+
+        private List<dynamic> getSuppliesLists(List<SuppliesList> forClient, string search)
+        {
+            List<dynamic> dynamicSuppliesLists = new List<dynamic>();
+            foreach (SuppliesList suppliesList in forClient)
+            {
+                if (suppliesList.SupplyName == search)
+                {
+                    dynamic dynamicSuppliesList = new ExpandoObject();
+                    dynamicSuppliesList.SupplyID = suppliesList.SupplyID;
+                    dynamicSuppliesList.PreventID = suppliesList.PreventID;
+                    dynamicSuppliesList.SupplyName = suppliesList.SupplyName;
+                    dynamicSuppliesList.AvailableAt = suppliesList.AvailableAt;
+                    dynamicSuppliesLists.Add(dynamicSuppliesList);
+
+                    return dynamicSuppliesLists;
+
+                }
+            }
+
+            return null;
+        }
+
+        [System.Web.Http.Route("api/Disease/searchDiseases/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchDiseases(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getDiseases(db.Diseases.ToList(), id);
+        }
+
+        private List<dynamic> getDiseases(List<Disease> forClient, string search)
+        {
+            List<dynamic> dynamicDiseases = new List<dynamic>();
+            foreach (Disease disease in forClient)
+            {
+                if (disease.CommonName == search)
+                {
+                    dynamic dynamicDisease = new ExpandoObject();
+                    dynamicDisease.DiseaseID = disease.DiseaseID;
+                    dynamicDisease.CommonName = disease.CommonName;
+                    dynamicDisease.DiseaseDescription = disease.DiseaseDescription;
+                    dynamicDisease.ScientificName = disease.ScientificName;
+                    dynamicDisease.Pathogen = disease.Pathogen;
+                    dynamicDisease.IncubationPeriod = disease.IncubationPeriod;
+                    dynamicDiseases.Add(dynamicDisease);
+
+                    return dynamicDiseases;
+                }
+            }
+
+            return null;
+        }
+
+        [System.Web.Http.Route("api/Specialist/searchSpecialists/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchSpecialists(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getSpecialists(db.Specialists.ToList(), id);
+        }
+
+        private List<dynamic> getSpecialists(List<Specialist> forClient, string search)
+        {
+            List<dynamic> dynamicSpecialists = new List<dynamic>();
+            foreach (Specialist specialist in forClient)
+            {
+                if (specialist.FirstName == search )
+                {
+                    dynamic dynamicSpecialist = new ExpandoObject();
+                    dynamicSpecialist.SpecialistID = specialist.SpecialistID;
+                    dynamicSpecialist.DiseaseID = specialist.DiseaseID;
+                    dynamicSpecialist.FirstName = specialist.FirstName;
+                    dynamicSpecialist.LastName = specialist.LastName;
+                    dynamicSpecialist.UserPassword = specialist.UserPassword;
+                    dynamicSpecialist.UserGUID = specialist.UserGUID;
+                    dynamicSpecialist.GUIDExpiry = specialist.GUIDExpiry;
+                    dynamicSpecialist.ContactNumber = specialist.ContactNumber;
+                    dynamicSpecialist.Qualification = specialist.Qualification;
+                    dynamicSpecialist.Email = specialist.Email;
+                    dynamicSpecialist.Hospital = specialist.Hospital;
+                    dynamicSpecialists.Add(dynamicSpecialist);
+
+                    return dynamicSpecialists;
+
+                }
+            }
+
+            return null;
+        }
+
+        [System.Web.Http.Route("api/Subtype/searchSubtypes/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchSubtypes(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getSubtypes(db.Subtypes.ToList(), id);
+        }
+
+        private List<dynamic> getSubtypes(List<Subtype> forClient, string search)
+        {
+            List<dynamic> dynamicSubtypes = new List<dynamic>();
+            foreach (Subtype subtype in forClient)
+            {
+                if (subtype.SubtypeName == search)
+                {
+                    dynamic dynamicSubtype = new ExpandoObject();
+                    dynamicSubtype.SubtypeID = subtype.SubtypeID;
+                    dynamicSubtype.DiseaseID = subtype.DiseaseID;
+                    dynamicSubtype.SubtypeDescription = subtype.SubtypeDescription;
+                    dynamicSubtype.SubtypeName = subtype.SubtypeName;
+                    dynamicSubtype.Strain = subtype.Strain;
+                    dynamicSubtypes.Add(dynamicSubtype);
+
+                    return dynamicSubtypes;
+
+                }
+            }
+
+            return null;
+        }
+
+        [System.Web.Http.Route("api/Symptom/searchSymptoms/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchSymptoms(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getSymptoms(db.Symptoms.ToList(), id);
+        }
+
+        private List<dynamic> getSymptoms(List<Symptom> forClient, string search)
+        {
+            List<dynamic> dynamicSymptoms = new List<dynamic>();
+            foreach (Symptom symptom in forClient)
+            {
+                if (symptom.SymptomName == search)
+                {
+                    dynamic dynamicSymptom = new ExpandoObject();
+                    dynamicSymptom.SymptomID = symptom.SymptomID;
+                    dynamicSymptom.DiseaseID = symptom.DiseaseID;
+                    dynamicSymptom.SymptomDescription = symptom.SymptomDescription;
+                    dynamicSymptom.SymptomAppears = symptom.SymptomAppears;
+                    dynamicSymptom.SymptomName = symptom.SymptomName;
+                    dynamicSymptom.SymptomSeverity = symptom.SymptomSeverity;
+                    dynamicSymptom.DefiningCharacteristic = symptom.DefiningCharacteristic;
+                    dynamicSymptoms.Add(dynamicSymptom);
+                    return dynamicSymptoms;
+
+                }
+            }
+
+            return null;
+        }
+
+        [System.Web.Http.Route("api/Treatment/searchTreatments/{id}")]
+        [System.Web.Mvc.HttpPost]
+        public List<dynamic> searchTreatments(string id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+            return getTreatments(db.Treatments.ToList(), id);
+        }
+
+        private List<dynamic> getTreatments(List<Treatment> forClient, string search)
+        {
+            List<dynamic> dynamicTreatments = new List<dynamic>();
+            foreach (Treatment treatment in forClient)
+            {
+                if (treatment.TreatmentEffective == search)
+                {
+                    dynamic dynamicTreatment = new ExpandoObject();
+                    dynamicTreatment.TreatmentID = treatment.TreatmentID;
+                    dynamicTreatment.DiseaseID = treatment.DiseaseID;
+                    dynamicTreatment.TreatmentDescription = treatment.TreatmentDescription;
+                    dynamicTreatment.TreatmentDuration = treatment.TreatmentDuration;
+                    dynamicTreatment.TreatmentEffective = treatment.TreatmentEffective;
+                    dynamicTreatment.TreatmentName = treatment.TreatmentName;
+                    dynamicTreatment.AfterCare = treatment.AfterCare;
+                    dynamicTreatment.Aftermath = treatment.Aftermath;
+                    dynamicTreatment.AvailableAt = treatment.AvailableAt;
+                    dynamicTreatments.Add(dynamicTreatment);
+
+                }
+            }
+
+            return dynamicTreatments;
+        }
+
         // GET: api/Default
         [System.Web.Http.Route("api/ActiveArea/getAllActiveAreas")]
         [System.Web.Mvc.HttpPost]
@@ -76,56 +395,6 @@ namespace MalariaAPI.Controllers
             db.Configuration.ProxyCreationEnabled = false;
             return getCausesReturnList(db.Causes.ToList());
         }
-
-        [System.Web.Http.Route("api/Cause/getCauseById/{id}")]
-        [System.Web.Mvc.HttpGet]
-        public IHttpActionResult getCauseById(int id)
-        {
-            DiseaseDBEntities db = new DiseaseDBEntities();
-            db.Configuration.ProxyCreationEnabled = false;
-
-            
-
-            
-            /*DiseaseDBEntities db = new DiseaseDBEntities();
-            db.Configuration.ProxyCreationEnabled = false;
-            List<dynamic> dynamicCauses = new List<dynamic>();
-            foreach (Cause cause in db.Causes.ToList())
-            {
-                if (cause.CauseID == id)
-                {
-                    dynamic dynamicCause = new ExpandoObject();
-                    dynamicCause.CauseID = cause.CauseID;
-                    dynamicCause.DiseaseID = cause.DiseaseID;
-                    dynamicCause.CauseDescription = cause.CauseDescription;
-                    dynamicCause.CauseRanking = cause.CauseRanking;
-                    dynamicCauses.Add(dynamicCause);
-                }
-            }
-            return dynamicCauses;*/
-            dynamic dynamicCause = new ExpandoObject();
-            //CauseDetail objCause = new CauseDetail();
-            int ID = Convert.ToInt32(id);
-            try
-            {
-                dynamicCause = db.Causes.Find(ID);
-                if (dynamicCause == null)
-                {
-                    return NotFound();
-                }
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            var response = Request.CreateResponse(HttpStatusCode.OK, dynamicCause);
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
-            return response;
-
-            //return Ok(dynamicCause);
-        }
-
 
         private List<dynamic> getCausesReturnList(List<Cause> forClient)
         {
@@ -698,8 +967,6 @@ namespace MalariaAPI.Controllers
             return Ok();
         }
 
-<<<<<<< HEAD
-=======
         [System.Web.Http.Route("api/Outbreak/deleteOutbreak/{id}")]
         [System.Web.Mvc.HttpPost]
         public IHttpActionResult deleteOutbreak(int id)

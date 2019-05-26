@@ -200,3 +200,6 @@ C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\Malari
 C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.csproj.CopyComplete
 C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.dll
 C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.pdb
+C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\System.Web.Cors.dll
+C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\System.Web.Http.Cors.dll
+C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\System.Web.Http.Cors.xml
