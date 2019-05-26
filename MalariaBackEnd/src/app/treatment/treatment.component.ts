@@ -46,19 +46,19 @@ export class TreatmentComponent implements OnInit {
     this.treatmentForm.reset();  
   }  
 
-  loadTreatmentToEdit(treatmentId: number) {  
-    this.treatmentService.getTreatmentById(treatmentId).subscribe(treatment=> {  
+  loadTreatmentToEdit(treatment: Treatment) {  
+    this.treatmentService.updateTreatment(treatment).subscribe(()=> {  
       this.message = null;  
       this.dataSaved = false;  
-      this.treatmentIdUpdate = 1;//treatment.treatmentID;  
-      this.treatmentForm.controls['DiseaseID'].setValue(1);//treatment.DiseaseID);  
-      this.treatmentForm.controls['TreatmentName'].setValue("Fuck this");//treatment.treatmentDescription);  
-      this.treatmentForm.controls['TreatmentDescription'].setValue("HighAsFuck");//treatment.treatmentRanking);  
-      this.treatmentForm.controls['AvailableAt'].setValue("ttt");//treatment.DiseaseID);  
-      this.treatmentForm.controls['TreatmentDuration'].setValue("Fuck this");//treatment.treatmentDescription);  
-      this.treatmentForm.controls['AfterCare'].setValue("HighAsFuck");//treatment.treatmentRanking); 
-      this.treatmentForm.controls['TreatmentEffective'].setValue("Fuck this");//treatment.treatmentDescription);  
-      this.treatmentForm.controls['Aftermath'].setValue("HighAsFuck");//treatment.treatmentRanking); 
+      this.treatmentIdUpdate = treatment.TreatmentID;  
+      this.treatmentForm.controls['DiseaseID'].setValue(treatment.DiseaseID);  
+      this.treatmentForm.controls['TreatmentName'].setValue(treatment.TreatmentName);  
+      this.treatmentForm.controls['TreatmentDescription'].setValue(treatment.TreatmentDescription);  
+      this.treatmentForm.controls['AvailableAt'].setValue(treatment.AvailableAt);  
+      this.treatmentForm.controls['TreatmentDuration'].setValue(treatment.TreatmentDuration);  
+      this.treatmentForm.controls['AfterCare'].setValue(treatment.AfterCare); 
+      this.treatmentForm.controls['TreatmentEffective'].setValue(treatment.TreatmentEffective);  
+      this.treatmentForm.controls['Aftermath'].setValue(treatment.Aftermath); 
     });  
   
   }  

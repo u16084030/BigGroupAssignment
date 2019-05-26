@@ -37,14 +37,14 @@ export class PreventionComponent implements OnInit {
       this.CreatePrevention(prevention);  
       this.preventionForm.reset();  
     }  
-    loadPreventionToEdit(preventionId: number) {  
-      this.preventionService.getPreventionById(preventionId).subscribe(prevention=> {  
+    loadPreventionToEdit(prevention: Prevention) {  
+      this.preventionService.updatePrevention(prevention).subscribe(()=> {  
         this.message = null;  
         this.dataSaved = false;  
-        this.preventionIdUpdate = 1;//Prevention.PreventionID;  
-        this.preventionForm.controls['CauseID'].setValue(1);//Prevention.DiseaseID);  
-       this.preventionForm.controls['PreventDescription'].setValue("Fuck this");//Prevention.PreventionDescription);  
-        this.preventionForm.controls['PreventEffective'].setValue("HighAsFuck");//Prevention.PreventionRanking);  
+        this.preventionIdUpdate = prevention.PreventID;  
+        this.preventionForm.controls['CauseID'].setValue(prevention.CauseID);  
+       this.preventionForm.controls['PreventDescription'].setValue(prevention.PreventDescription);  
+        this.preventionForm.controls['PreventEffective'].setValue(prevention.PreventEffective);  
       });  
     
     }  
@@ -72,7 +72,7 @@ export class PreventionComponent implements OnInit {
     }   
     deletePrevention(preventionId: number) {  
       if (confirm("Are you sure you want to delete this ?")) {   
-      this.preventionService.deletePreventionById(preventionId).subscribe(() => {  
+      this.preventionService.deletePrevention(preventionId).subscribe(() => {  
         this.dataSaved = true;  
         this.message = 'Record Deleted Succefully';  
         this.loadAllPreventions();  

@@ -28,11 +28,11 @@ export class SpecialistService {
 
   updateSpecialist(specialist:Object)
   {
-    return this.http.get('http://localhost:60090/api/Specialist/updateSpecialist');
+    return this.http.post('http://localhost:60090/api/Specialist/updateSpecialist',specialist);
   }
 
-  deleteSpecialistById(specialist:number)
+  deleteSpecialist(specialist:number)
   {
-    return this.http.post('http://localhost:60090/api/Specialist/deleteSpecialistById', specialist);
+    return this.http.delete('http://localhost:60090/api/Specialist/deleteSpecialist/'+specialist);
   }
 }

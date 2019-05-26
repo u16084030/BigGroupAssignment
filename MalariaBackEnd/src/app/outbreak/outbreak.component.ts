@@ -40,15 +40,15 @@ export class OutbreakComponent implements OnInit {
       this.CreateOutbreak(outbreak);  
       this.outbreakForm.reset();  
     }  
-    loadOutbreakToEdit(outbreakId: number) {  
-      this.outbreakService.getOutbreakById(outbreakId).subscribe(outbreak=> {  
+    loadOutbreakToEdit(outbreak: Outbreak) {  
+      this.outbreakService.updateOutbreak(outbreak).subscribe(()=> {  
         this.message = null;  
         this.dataSaved = false;    
-        this.outbreakForm.controls['AreaID'].setValue("Common name");//disease.CommonName);  
-        this.outbreakForm.controls['OutbreakDate'].setValue("Scientific name");//disease.ScientificName);  
-        this.outbreakForm.controls['OutbreakCity'].setValue("Pathogen name");//disease.Pathogen);
-        this.outbreakForm.controls['NumberOfCasualties'].setValue("Incubation");//disease.IncubationPeriod);  
-        this.outbreakForm.controls['OutbreakDescription'].setValue("Description");//disease.DiseaseDescription);  
+        this.outbreakForm.controls['AreaID'].setValue(outbreak.AreaID);  
+        this.outbreakForm.controls['OutbreakDate'].setValue(outbreak.OutbreakDate); 
+        this.outbreakForm.controls['OutbreakCity'].setValue(outbreak.OutbreakCity);
+        this.outbreakForm.controls['NumberOfCasualties'].setValue(outbreak.NumberOfCasualties);  
+        this.outbreakForm.controls['OutbreakDescription'].setValue(outbreak.OutbreakDescription);  
       });  
     
     }  

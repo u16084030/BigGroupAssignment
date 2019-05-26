@@ -396,6 +396,58 @@ namespace MalariaAPI.Controllers
             return getCausesReturnList(db.Causes.ToList());
         }
 
+<<<<<<< HEAD
+=======
+        [System.Web.Http.Route("api/Cause/getCauseById/{id}")]
+        [System.Web.Mvc.HttpGet]
+        public IHttpActionResult getCauseById(int id)
+        {
+            DiseaseDBEntities db = new DiseaseDBEntities();
+            db.Configuration.ProxyCreationEnabled = false;
+
+            
+
+            
+            db.Configuration.ProxyCreationEnabled = false;
+            List<dynamic> dynamicCauses = new List<dynamic>();
+            foreach (Cause cause in db.Causes.ToList())
+            {
+                if (cause.CauseID == id)
+                {
+                    dynamic dynamicCause = new ExpandoObject();
+                    dynamicCause.CauseID = cause.CauseID;
+                    dynamicCause.DiseaseID = cause.DiseaseID;
+                    dynamicCause.CauseDescription = cause.CauseDescription;
+                    dynamicCause.CauseRanking = cause.CauseRanking;
+                    dynamicCauses.Add(dynamicCause);
+                }
+            }
+            //return dynamicCauses;
+            //dynamic dynamicCause = new ExpandoObject();
+            //CauseDetail objCause = new CauseDetail();
+            //int ID = Convert.ToInt32(id);
+            //try
+            //{
+            //    dynamicCause = db.Causes.Find(ID);
+            //    if (dynamicCause == null)
+            //    {
+            //        return NotFound();
+            //    }
+
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+            //var response = Request.CreateResponse(HttpStatusCode.OK, dynamicCause);
+            //response.Headers.Add("Access-Control-Allow-Origin", "*");
+            //return response;
+
+            return Ok(dynamicCauses);
+        }
+
+
+>>>>>>> 6c80a15f92b25044e106e0c2c985abaa9c534caa
         private List<dynamic> getCausesReturnList(List<Cause> forClient)
         {
             List<dynamic> dynamicCauses = new List<dynamic>();
@@ -428,8 +480,8 @@ namespace MalariaAPI.Controllers
             {
                 dynamic dynamicPrevention = new ExpandoObject();
                 dynamicPrevention.CauseID = prevention.CauseID;
-                dynamicPrevention.PreventionID = prevention.PreventID;
-                dynamicPrevention.PreventionDescription = prevention.PreventDescription;
+                dynamicPrevention.PreventID = prevention.PreventID;
+                dynamicPrevention.PreventDescription = prevention.PreventDescription;
                 dynamicPrevention.PreventEffective = prevention.PreventEffective;
                 dynamicPreventions.Add(dynamicPrevention);
             }
@@ -967,6 +1019,10 @@ namespace MalariaAPI.Controllers
             return Ok();
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c80a15f92b25044e106e0c2c985abaa9c534caa
         [System.Web.Http.Route("api/Outbreak/deleteOutbreak/{id}")]
         [System.Web.Mvc.HttpPost]
         public IHttpActionResult deleteOutbreak(int id)

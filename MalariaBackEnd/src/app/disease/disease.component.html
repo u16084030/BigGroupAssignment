@@ -53,12 +53,12 @@
                       <span *ngIf="!diseaseForm.get('DiseaseDescription').value && diseaseForm.get('DiseaseDescription').touched"></span>  
                     </mat-error>  
                   </td> 
-                  <td></td>   
+                    
                 </tr>    
                 <tr>  
                   <td></td>  
                   <td  class="content-center">  
-                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!diseaseForm.valid">Submit</button>      
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button">Submit</button>      <!--[disabled]="!diseaseForm.valid"-->
                     <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
                   </td>  
                   <td>  
@@ -86,7 +86,7 @@
               <td class="tbl2">{{disease.IncubationPeriod}}</td>
               <td class="tbl2">{{disease.DiseaseDescription}}</td>
               <td class="tbl2">  
-                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadDiseaseToEdit(disease.DiseaseID)">Edit</button>  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadDiseaseToEdit(disease)">Edit</button>  
               </td>  
               <td class="tbl2">  
                 <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteDisease(disease.DiseaseID)">Delete</button>  

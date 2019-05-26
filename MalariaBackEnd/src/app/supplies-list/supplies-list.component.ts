@@ -40,13 +40,14 @@ export class SuppliesListComponent implements OnInit {
     this.CreateSupply(supply);  
     this.suppliesForm.reset();  
   }  
-  loadSupplyToEdit(supplyId: number) {  
-    this.suppliesListService.getSuppliesListById(supplyId).subscribe(supply=> {  
+  loadSupplyToEdit(supply: SuppliesList) {  
+    this.suppliesListService.updateSuppliesList(supply).subscribe(()=> {  
       this.message = null;  
       this.dataSaved = false;  
-      this.supplyIdUpdate = 1;//supply.supplyID;  
-      this.suppliesForm.controls['SupplyName'].setValue(1);//supply.DiseaseID);  
-      this.suppliesForm.controls['AvailableAt'].setValue("Fuck this");//supply.supplyDescription);   
+      this.supplyIdUpdate = supply.SupplyID;  
+      this.suppliesForm.controls['PreventID'].setValue(supply.PreventID);
+      this.suppliesForm.controls['SupplyName'].setValue(supply.SupplyName);//supply.DiseaseID);  
+      this.suppliesForm.controls['AvailableAt'].setValue(supply.AvailableAt);//supply.supplyDescription);   
     });  
   
   }  

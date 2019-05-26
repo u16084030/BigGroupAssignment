@@ -28,11 +28,11 @@ export class DiseaseService {
 
   updateDisease(disease:Object)
   {
-    return this.http.get('http://localhost:60090/api/Disease/updateDisease');
+    return this.http.post('http://localhost:60090/api/Disease/updateDisease', disease);
   }
 
   deleteDiseaseById(disease:number)
   {
-    return this.http.post('http://localhost:60090/api/Disease/deleteDiseaseById/', disease);
+    return this.http.delete('http://localhost:60090/api/Disease/deleteDiseaseById/'+disease);
   }
 }

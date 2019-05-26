@@ -41,13 +41,13 @@ loadAllAreas() {
     this.CreateArea(area);  
     this.activeAreaForm.reset();  
   }  
-  loadAreaToEdit(areaId: number) {  
-    this.activeAreaService.getAreaById(areaId).subscribe(area=> {  
+  loadAreaToEdit(area: ActiveArea) {  
+    this.activeAreaService.updateActiveArea(area).subscribe(()=> {  
       this.message = null;  
       this.dataSaved = false;  
-      this.areaIdUpdate = 1;//cause.CauseID;  
-      this.activeAreaForm.controls['DiseaseID'].setValue(1);//cause.DiseaseID);  
-     this.activeAreaForm.controls['AreaName'].setValue("Fuck this");//cause.CauseDescription);   
+      this.areaIdUpdate = area.AreaID;  
+      this.activeAreaForm.controls['DiseaseID'].setValue(area.DiseaseID);  
+     this.activeAreaForm.controls['AreaName'].setValue(area.AreaName);   
     });  
   
   }  

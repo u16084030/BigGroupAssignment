@@ -3,7 +3,7 @@
   <mat-card>  
     <mat-toolbar color="accent">  
       <div align="center" style="color:white;text-align: right;">  
-        Symptons of Malaria  
+        Symptoms of Malaria  
       </div>    
     </mat-toolbar>  
   <br><br>  
@@ -66,7 +66,7 @@
                 <tr>  
                   <td></td>  
                   <td  class="content-center">  
-                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!symptonForm.valid">Submit</button>      
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button">Submit</button>      
                     <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
                   </td>  
                   <td>  
@@ -96,7 +96,7 @@
               <td class="tbl2">{{sympton.SymptomAppears}}</td>  
               <td class="tbl2">{{sympton.DefiningCharacteristic}}</td>
               <td class="tbl2">  
-                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadSymptonToEdit(sympton.SymptomID)">Edit</button>  
+                <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadSymptonToEdit(sympton)">Edit</button>  
               </td>  
               <td class="tbl2">  
                 <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteSympton(sympton.SymptomID)">Delete</button>  

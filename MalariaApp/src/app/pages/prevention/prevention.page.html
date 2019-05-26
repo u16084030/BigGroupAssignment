@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>prevention</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <p>This page....</p>
+
+    <ion-list inset>
+        <ion-item *ngFor="let prevention of allPreventions | async">
+          <div style="border: 2px solid black; width: 100%">
+            <h2>{{prevention.PreventDescription}}</h2>
+            <p style="margin-left:1em">Level of Effectiveness: {{prevention.PreventEffective}}</p>
+          </div>
+        </ion-item>
+    </ion-list>
+</ion-content>
