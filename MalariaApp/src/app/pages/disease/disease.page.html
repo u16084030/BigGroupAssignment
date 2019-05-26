@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>disease</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list inset>
+        <ion-item *ngFor="let disease of allDiseases | async">
+            <div style="border: 2px solid black;"><h2 style="text-align: center">{{disease.CommonName}}</h2>
+              
+            <p style="margin-left:1em">Scientific Name: {{disease.ScientificName}}</p>
+            <p style="margin-left:1em">Pathogen: {{disease.Pathogen}}</p>
+            <p style="margin-left:1em">Incubation Period: {{disease.IncubationPeriod}}</p>
+            <p style="margin-left:1em">Disease Description: {{disease.DiseaseDescription}}</p>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>
