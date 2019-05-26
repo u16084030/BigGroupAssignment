@@ -3,14 +3,23 @@
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
-    <ion-title>active-area</ion-title>
+    <ion-title>ACTIVE AREA</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="area-img"><img src="assets/mapBG.jpg"></div>
+    <div class="area-block-desc">
+      <h4><p>This page displays the current areas where malaria is active.</p></h4>
+    </div>
+
+
+<ion-content>
     <ion-list inset>
         <ion-item *ngFor="let area of allAreas | async">
-          <h2>{{area.AreaName}}</h2>
+          <div class="area-block">
+            <h2>{{area.AreaName}}</h2>
+          </div>
         </ion-item>
       </ion-list>
 </ion-content>

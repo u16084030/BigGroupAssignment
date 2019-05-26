@@ -3,16 +3,29 @@
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
-    <ion-title>cause</ion-title>
+    <ion-title>CAUSE</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="cause-img"><img src="assets/mosquitoBG.jpg"></div>
+    <div class="cause-block-desc">
+      <h4>
+        This page explains the causes of malaria.
+      </h4>
+    </div>
+
+
+
     <ion-list inset>
-        <ion-item *ngFor="let cause of allCauses | async">
+      <div *ngFor="let cause of allCauses | async">        
+        <ion-item>
+        <div class ="cause-block">
           <h4>{{cause.CauseDescription}}</h4>
-          <br/>
-          <p>{{cause.CauseRanking}}</p>
+          <p><b>Severity: </b> {{cause.CauseRanking}}</p>
+        </div>
         </ion-item>
+      </div>
+
     </ion-list>
 </ion-content>

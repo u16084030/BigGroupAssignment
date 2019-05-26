@@ -9,3 +9,43 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+:root{
+    background-color: rgb(53,68,99);
+    --ion-background-color:rgb(53,68,99);
+}
+
+.info-block{
+    background-color: white;
+    font-family:Calibri;
+    position: relative;
+    padding-top: 28px;
+    overflow: visible !important;
+    height: unset;
+    margin-top: 35px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 14px;
+    // box-shadow: 5px 5px 10px 7px black;
+}
+.info-block h2{
+    font-family: fantasy;
+    color: black;
+    position: absolute;
+    left: 50%;
+    top: -21px;
+    transform: translate(-50%, -50%);
+    padding: 14px 28px;
+    display: grid;
+    place-content: center;
+    background-color: rgb(193,247,213);
+    
+    filter: drop-shadow(3px 3px 2px black);
+}
+
+.toolbar-title{
+    font-size: 2em;
+}
+.list-ios.list-inset ion-item {
+    --border-width: 0 0 0 0 !important;
+    --inner-border-width: 0 !important;
+}

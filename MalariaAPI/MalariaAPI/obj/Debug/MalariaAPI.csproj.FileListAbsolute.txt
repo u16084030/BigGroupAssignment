@@ -200,6 +200,11 @@ C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\Malari
 C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.csproj.CopyComplete
 C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.dll
 C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.pdb
+<<<<<<< HEAD
+C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\System.Web.Cors.dll
+C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\System.Web.Http.Cors.dll
+C:\Users\Jake Rawlinson\Desktop\354 Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\System.Web.Http.Cors.xml
+=======
 C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.csprojResolveAssemblyReference.cache
 C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.dll
 C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.pdb
@@ -302,3 +307,4 @@ C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\M
 C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\Microsoft.AI.Web.xml
 C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+>>>>>>> 6c80a15f92b25044e106e0c2c985abaa9c534caa

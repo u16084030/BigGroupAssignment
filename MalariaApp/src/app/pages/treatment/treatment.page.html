@@ -3,18 +3,28 @@
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
-    <ion-title>treatment</ion-title>
+    <ion-title>TREATMENT</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="treatment-img"><img src="assets/pillsBG.jpg"></div>
+    <div class="treatment-block-desc">
+      <h4>
+        This page the treatments available to cure malaria.
+      </h4>
+    </div>
+
+
     <ion-list inset>
         <ion-item *ngFor="let trt of allTreatments | async">
+          <div class="treatment-block">
           <h2>{{trt.TreatmentName}}</h2>
-          <p>{{trt.TreatmentDescription}}</p>
-          <p>{{trt.AvailbaleAt}}</p>
-          <p>{{trt.TreatmentDuration}}</p>
-          <p>{{trt.TreatmentEffective}}</p>
+          <p><b>Description: </b>{{trt.TreatmentDescription}}</p>
+          <p><b>Available at: </b>{{trt.AvailbaleAt}}</p>
+          <p><b>Duration of treatment: </b>{{trt.TreatmentDuration}}</p>
+          <p><b>How effective? </b>{{trt.TreatmentEffective}}</p>
+          </div>
         </ion-item>
     </ion-list>
 </ion-content>

@@ -3,15 +3,25 @@
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
-    <ion-title>supplies</ion-title>
+    <ion-title>SUPPLIES</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="supplies-img"><img src="assets/netBG.jpg"></div>
+    <div class="supplies-block-desc">
+      <h4>
+        This page explains the supplies needed to prevent malaria.
+      </h4>
+    </div>
+
+    
     <ion-list inset>
         <ion-item *ngFor="let supply of allSupplies | async">
-          <h2>{{supply.SupplyName}}</h2>
-          <p>{{supply.AvailableAt}}</p>
+          <div class ="supply-block">
+            <h2>{{supply.SupplyName}}</h2>
+            <p><b>Available At: </b>{{supply.AvailableAt}}</p>
+          </div>
         </ion-item>
     </ion-list>
 </ion-content>
