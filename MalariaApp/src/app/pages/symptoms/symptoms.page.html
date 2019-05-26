@@ -3,18 +3,28 @@
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
-    <ion-title>symptoms</ion-title>
+    <ion-title>SYMPTOMS</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="symptoms-img"><img src="assets/feverBG.jpg"></div>
+    <div class="symptom-block-desc">
+      <h4>
+        This page describes the symptoms of malaria.
+      </h4>
+    </div>
+
+
     <ion-list inset>
         <ion-item *ngFor="let sympton of allSymptons | async">
-          <h2>{{sympton.SymptomName}}</h2>
-          <p>{{sympton.SymptomDescription}}</p>
-          <p>{{sympton.SymptomSeverity}}</p>
-          <p>{{sympton.SymptomAppears}}</p>
-          <p>{{sympton.DefiningCharacteristic}}</p>
+          <div class="symptoms-block">
+            <h2>{{sympton.SymptomName}}</h2>
+            <p>{{sympton.SymptomDescription}}</p>
+            <p><b>Severity: </b>{{sympton.SymptomSeverity}}</p>
+            <p><b>Appears After: </b>{{sympton.SymptomAppears}}</p>
+            <p><b>Defining Characteristics? </b>{{sympton.DefiningCharacteristic}}</p>
+          </div>
         </ion-item>
     </ion-list>
 </ion-content>
