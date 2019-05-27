@@ -15,4 +15,9 @@ export class SubtypeService {
   {
     return this.http.get('http://localhost:60090/api/Subtype/getAllSubtypes');
   }
+
+  searchSubtypes(temp)
+  {
+    return this.http.post('http://localhost:60090/api/Subtype/searchSubtypes/'+temp, temp);
+  }
 }

@@ -11,6 +11,8 @@ import { Outbreak } from '../outbreak/outbreak';
 export class OutbreakPage implements OnInit {
 
   allOutbreaks: object;
+  tmp: object;
+  searchValue: string;
 
   constructor(private outbreakService:OutbreakService) { }
 
@@ -21,6 +23,10 @@ export class OutbreakPage implements OnInit {
   loadAllOutbreaks() {  
     this.allOutbreaks = this.outbreakService.getAllOutbreaks();  
   } 
-  
+  searchOutbreaks() {  
+    let temp = this.searchValue;
+    this.allOutbreaks = this.outbreakService.searchOutbreaks(temp);  
+    //console.log(tmp.AreaName);
+    } 
 
 }

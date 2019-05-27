@@ -12,6 +12,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class CausePage implements OnInit {
 
   allCauses: object;
+  tmp: object;
+  searchValue: string;
 
   constructor(private causeService:CauseService) { }
 
@@ -23,5 +25,11 @@ export class CausePage implements OnInit {
   loadAllCauses() {  
     this.allCauses = this.causeService.getAllCauses();  
   } 
+
+  searchCauses() {  
+    let temp = this.searchValue;
+    this.allCauses = this.causeService.searchCauses(temp);  
+    //console.log(tmp.AreaName);
+    }
 
 }

@@ -15,4 +15,9 @@ export class ActiveAreaService {
   {
     return this.http.get('http://localhost:60090/api/ActiveArea/getAllActiveAreas');
   }
+
+  searchActiveAreas(temp)
+  {
+    return this.http.post('http://localhost:60090/api/ActiveArea/searchActiveAreas/'+temp, temp);
+  }
 }

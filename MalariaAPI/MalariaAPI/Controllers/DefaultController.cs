@@ -122,8 +122,8 @@ namespace MalariaAPI.Controllers
                 {
                     dynamic dynamicPrevention = new ExpandoObject();
                     dynamicPrevention.CauseID = prevention.CauseID;
-                    dynamicPrevention.PreventionID = prevention.PreventID;
-                    dynamicPrevention.PreventionDescription = prevention.PreventDescription;
+                    dynamicPrevention.PreventID = prevention.PreventID;
+                    dynamicPrevention.PreventDescription = prevention.PreventDescription;
                     dynamicPrevention.PreventEffective = prevention.PreventEffective;
                     dynamicPreventions.Add(dynamicPrevention);
 
@@ -199,40 +199,28 @@ namespace MalariaAPI.Controllers
 
         [System.Web.Http.Route("api/Specialist/searchSpecialists/{id}")]
         [System.Web.Mvc.HttpPost]
-        public List<dynamic> searchSpecialists(string id)
+        public Boolean searchSpecialists(string id, string user, string pass)
         {
             DiseaseDBEntities db = new DiseaseDBEntities();
             db.Configuration.ProxyCreationEnabled = false;
-            return getSpecialists(db.Specialists.ToList(), id);
+            return getSpecialists(db.Specialists.ToList(), id, pass);
         }
 
-        private List<dynamic> getSpecialists(List<Specialist> forClient, string search)
+        private Boolean getSpecialists(List<Specialist> forClient, string search, string pass)
         {
             List<dynamic> dynamicSpecialists = new List<dynamic>();
             foreach (Specialist specialist in forClient)
             {
                 if (specialist.FirstName == search )
                 {
-                    dynamic dynamicSpecialist = new ExpandoObject();
-                    dynamicSpecialist.SpecialistID = specialist.SpecialistID;
-                    dynamicSpecialist.DiseaseID = specialist.DiseaseID;
-                    dynamicSpecialist.FirstName = specialist.FirstName;
-                    dynamicSpecialist.LastName = specialist.LastName;
-                    dynamicSpecialist.UserPassword = specialist.UserPassword;
-                    dynamicSpecialist.UserGUID = specialist.UserGUID;
-                    dynamicSpecialist.GUIDExpiry = specialist.GUIDExpiry;
-                    dynamicSpecialist.ContactNumber = specialist.ContactNumber;
-                    dynamicSpecialist.Qualification = specialist.Qualification;
-                    dynamicSpecialist.Email = specialist.Email;
-                    dynamicSpecialist.Hospital = specialist.Hospital;
-                    dynamicSpecialists.Add(dynamicSpecialist);
-
-                    return dynamicSpecialists;
-
+                    if(specialist.UserPassword == pass)
+                    {
+                        return true;
+                    }
                 }
             }
 
-            return null;
+            return false;
         }
 
         [System.Web.Http.Route("api/Subtype/searchSubtypes/{id}")]

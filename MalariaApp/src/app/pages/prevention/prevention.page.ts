@@ -11,6 +11,8 @@ import { Prevention } from '../prevention/prevention';
 export class PreventionPage implements OnInit {
 
   allPreventions: object;
+  tmp: object;
+  searchValue: string;
 
   constructor(private preventionService:PreventionService) { }
 
@@ -21,5 +23,11 @@ export class PreventionPage implements OnInit {
   loadAllPreventions() {  
     this.allPreventions = this.preventionService.getAllPreventions();  
   } 
+
+  searchPreventions() {  
+    let temp = this.searchValue;
+    this.allPreventions = this.preventionService.searchPreventions(temp);  
+    //console.log(tmp.AreaName);
+    } 
 
 }

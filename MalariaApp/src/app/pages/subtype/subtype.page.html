@@ -14,6 +14,19 @@
         This page describes each subtype of malaria.
       </h4>
     </div>
+    <ion-toolbar>
+        <ion-searchbar placeholder="Search..." [(ngModel)]="searchValue">
+            <ion-buttons end>
+                <button ion-button icon-only (click)="searchSubtypes()">
+                  <ion-icon name="search"></ion-icon>
+                </button>
+                <button ion-button icon-only (click)="loadAllSubtypes()">
+                    <ion-icon name="backspace"></ion-icon>
+                  </button>
+              </ion-buttons>
+        </ion-searchbar>
+        
+      </ion-toolbar>
 
 
     <ion-list inset>

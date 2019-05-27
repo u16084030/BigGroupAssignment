@@ -15,4 +15,9 @@ export class TreatmentService {
   {
     return this.http.get('http://localhost:60090/api/Treatment/getAllTreatments');
   }
+
+  searchTreatments(temp)
+  {
+    return this.http.post('http://localhost:60090/api/Treatment/searchTreatments/'+temp, temp);
+  }
 }

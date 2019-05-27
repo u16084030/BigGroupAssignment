@@ -12,6 +12,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class SymptomsPage implements OnInit {
 
   allSymptons: object;
+  tmp: object;
+  searchValue: string;
 
   constructor(private symptomsService:SymptomsService) { }
 
@@ -22,5 +24,11 @@ export class SymptomsPage implements OnInit {
   loadAllSymptons() {  
     this.allSymptons = this.symptomsService.getAllSymptoms();  
   } 
+
+  searchSymptoms() {  
+    let temp = this.searchValue;
+    this.allSymptons = this.symptomsService.searchSymptoms(temp);  
+    //console.log(tmp.AreaName);
+    }
 
 }

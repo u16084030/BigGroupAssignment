@@ -12,6 +12,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class SubtypePage implements OnInit {
 
   allSubtypes: object;
+  tmp: object;
+  searchValue: string;
 
   constructor(private subtypeService:SubtypeService) { }
 
@@ -22,5 +24,11 @@ export class SubtypePage implements OnInit {
   loadAllSubtypes() {  
     this.allSubtypes = this.subtypeService.getAllSubtypes();  
   } 
+
+  searchSubtypes() {  
+    let temp = this.searchValue;
+    this.allSubtypes = this.subtypeService.searchSubtypes(temp);  
+    //console.log(tmp.AreaName);
+    } 
 
 }

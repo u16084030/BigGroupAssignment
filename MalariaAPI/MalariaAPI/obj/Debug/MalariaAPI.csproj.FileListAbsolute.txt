@@ -308,3 +308,6 @@ C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\M
 C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\Microsoft.AI.Web.xml
 C:\Users\jared\OneDrive\Documents\Tuks 2019\INF 354\Project\BigGroupAssignment\MalariaAPI\MalariaAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 >>>>>>> 6c80a15f92b25044e106e0c2c985abaa9c534caa
+D:\BSc IT\2019\INF 354\Project\Git\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.csprojResolveAssemblyReference.cache
+D:\BSc IT\2019\INF 354\Project\Git\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.dll
+D:\BSc IT\2019\INF 354\Project\Git\BigGroupAssignment\MalariaAPI\MalariaAPI\obj\Debug\MalariaAPI.pdb

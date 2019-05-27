@@ -15,4 +15,9 @@ export class OutbreakService {
   {
     return this.http.get('http://localhost:60090/api/Outbreak/getAllOutbreaks');
   }
+
+  searchOutbreaks(temp)
+  {
+    return this.http.post('http://localhost:60090/api/Outbreak/searchOutbreaks/'+temp, temp);
+  }
 }

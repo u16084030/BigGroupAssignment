@@ -15,4 +15,9 @@ export class SuppliesService {
   {
     return this.http.get('http://localhost:60090/api/SuppliesList/getAllSuppliesLists');
   }
+
+  searchSupplies(temp)
+  {
+    return this.http.post('http://localhost:60090/api/SuppliesList/searchSuppliesLists/'+temp, temp);
+  }
 }

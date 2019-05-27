@@ -12,6 +12,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class TreatmentPage implements OnInit {
 
   allTreatments: object;
+  tmp: object;
+  searchValue: string;
 
   constructor(private treatmentService:TreatmentService) { }
 
@@ -22,5 +24,11 @@ export class TreatmentPage implements OnInit {
   loadAllTreatments() {  
     this.allTreatments = this.treatmentService.getAllTreatments();  
   } 
+
+  searchTreatments() {  
+    let temp = this.searchValue;
+    this.allTreatments = this.treatmentService.searchTreatments(temp);  
+    //console.log(tmp.AreaName);
+    }
 
 }

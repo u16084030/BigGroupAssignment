@@ -12,6 +12,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class SuppliesPage implements OnInit {
 
   allSupplies: object;
+  tmp: object;
+  searchValue: string;
 
   constructor(private suppliesService:SuppliesService) { }
 
@@ -21,5 +23,11 @@ export class SuppliesPage implements OnInit {
   loadAllSupplies() {  
     this.allSupplies = this.suppliesService.getAllSuppliesLists();  
   } 
+
+  searchSupplies() {  
+    let temp = this.searchValue;
+    this.allSupplies = this.suppliesService.searchSupplies(temp);  
+    //console.log(tmp.AreaName);
+    } 
 
 }

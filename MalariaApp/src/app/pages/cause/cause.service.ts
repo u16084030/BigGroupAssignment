@@ -15,4 +15,9 @@ export class CauseService {
   {
     return this.http.get('http://localhost:60090/api/Cause/getAllCauses');
   }
+
+  searchCauses(temp)
+  {
+    return this.http.post('http://localhost:60090/api/Cause/searchCauses/'+temp, temp);
+  }
 }

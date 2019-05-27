@@ -15,4 +15,9 @@ export class SymptomsService {
   {
     return this.http.get('http://localhost:60090/api/Symptom/getAllSymptoms');
   }
+
+  searchSymptoms(temp)
+  {
+    return this.http.post('http://localhost:60090/api/Symptom/searchSymptoms/'+temp, temp);
+  }
 }

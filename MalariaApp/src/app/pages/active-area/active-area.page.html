@@ -10,11 +10,21 @@
 <ion-content>
     <div class="area-img"><img src="assets/mapBG.jpg"></div>
     <div class="area-block-desc">
-      <h4><p>This page displays the current areas where malaria is active.</p></h4>
+      <h4>This page displays the current areas where malaria is active.</h4>
     </div>
-
-
-<ion-content>
+    <ion-toolbar>
+      <ion-searchbar placeholder="Search..." [(ngModel)]="searchValue">
+          <ion-buttons end>
+              <button ion-button icon-only (click)="searchAreas()">
+                <ion-icon name="search"></ion-icon>
+              </button>
+              <button ion-button icon-only (click)="loadAllAreas()">
+                  <ion-icon name="backspace"></ion-icon>
+                </button>
+            </ion-buttons>
+      </ion-searchbar>
+      
+    </ion-toolbar>
     <ion-list inset>
         <ion-item *ngFor="let area of allAreas | async">
           <div class="area-block">
@@ -22,4 +32,11 @@
           </div>
         </ion-item>
       </ion-list>
+      <ion-list inset>
+          <ion-item *ngFor="let t of tmp | async">
+            <div class="area-block">
+              <h2>{{t.AreaName}}</h2>
+            </div>
+          </ion-item>
+        </ion-list>
 </ion-content>
