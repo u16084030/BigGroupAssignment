@@ -384,8 +384,7 @@ namespace MalariaAPI.Controllers
             return getCausesReturnList(db.Causes.ToList());
         }
 
-<<<<<<< HEAD
-=======
+
         [System.Web.Http.Route("api/Cause/getCauseById/{id}")]
         [System.Web.Mvc.HttpGet]
         public IHttpActionResult getCauseById(int id)
@@ -435,7 +434,7 @@ namespace MalariaAPI.Controllers
         }
 
 
->>>>>>> 6c80a15f92b25044e106e0c2c985abaa9c534caa
+
         private List<dynamic> getCausesReturnList(List<Cause> forClient)
         {
             List<dynamic> dynamicCauses = new List<dynamic>();
@@ -1007,10 +1006,7 @@ namespace MalariaAPI.Controllers
             return Ok();
         }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 6c80a15f92b25044e106e0c2c985abaa9c534caa
         [System.Web.Http.Route("api/Outbreak/deleteOutbreak/{id}")]
         [System.Web.Mvc.HttpPost]
         public IHttpActionResult deleteOutbreak(int id)
